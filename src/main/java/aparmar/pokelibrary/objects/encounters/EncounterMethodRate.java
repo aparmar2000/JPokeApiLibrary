@@ -10,7 +10,7 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 @Data
 public class EncounterMethodRate {
     @SerializedName("encounter_method")
-    private NamedAPIResource encounterMethod;
+    private NamedAPIResource<EncounterMethod> encounterMethod;
     @SerializedName("version_details")
     private List<EncounterVersionDetails> versionDetails;
 }

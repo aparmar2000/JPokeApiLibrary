@@ -10,6 +10,6 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 public class MoveAilment {
     private int id;
     private String name;
-    private List<NamedAPIResource> moves;
+    private List<NamedAPIResource<Move>> moves;
     private List<Name> names;
 }

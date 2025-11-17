@@ -14,5 +14,5 @@ public class PokemonHabitat {
     private String name;
     private List<Name> names;
     @SerializedName("pokemon_species")
-    private List<NamedAPIResource> pokemonSpecies;
+    private List<NamedAPIResource<PokemonSpecies>> pokemonSpecies;
 }

@@ -14,5 +14,5 @@ public class ItemFlingEffect {
     private String name;
     @SerializedName("effect_entries")
     private List<Effect> effectEntries;
-    private List<NamedAPIResource> items;
+    private List<NamedAPIResource<Item>> items;
 }

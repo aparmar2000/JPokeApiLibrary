@@ -10,7 +10,7 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 @Data
 public class ContestComboDetail {
     @SerializedName("use_before")
-    private List<NamedAPIResource> useBefore;
+    private List<NamedAPIResource<Move>> useBefore;
     @SerializedName("use_after")
-    private List<NamedAPIResource> useAfter;
+    private List<NamedAPIResource<Move>> useAfter;
 }

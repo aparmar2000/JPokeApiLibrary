@@ -5,10 +5,11 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.games.Version;
 
 @Data
 public class VersionEncounterDetail {
-    private NamedAPIResource version;
+    private NamedAPIResource<Version> version;
 
     @SerializedName("max_chance")
     private int maxChance;

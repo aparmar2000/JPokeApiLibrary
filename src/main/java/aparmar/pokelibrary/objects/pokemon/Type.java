@@ -5,6 +5,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.games.Generation;
+import main.java.aparmar.pokelibrary.objects.moves.Move;
+import main.java.aparmar.pokelibrary.objects.moves.MoveDamageClass;
 import main.java.aparmar.pokelibrary.objects.utility.GenerationGameIndex;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
@@ -19,10 +22,10 @@ public class Type {
     private List<TypeRelationsPast> pastDamageRelations;
     @SerializedName("game_indices")
     private List<GenerationGameIndex> gameIndices;
-    private NamedAPIResource generation;
+    private NamedAPIResource<Generation> generation;
     @SerializedName("move_damage_class")
-    private NamedAPIResource moveDamageClass;
+    private NamedAPIResource<MoveDamageClass> moveDamageClass;
     private List<Name> names;
     private List<TypePokemon> pokemon;
-    private List<NamedAPIResource> moves;
+    private List<NamedAPIResource<Move>> moves;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.games.VersionGroup;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
@@ -23,11 +24,11 @@ public class PokemonForm {
     private boolean isMega;
     @SerializedName("form_name")
     private String formName;
-    private NamedAPIResource pokemon;
+    private NamedAPIResource<Pokemon> pokemon;
     private List<PokemonFormType> types;
     private PokemonFormSprites sprites;
     @SerializedName("version_group")
-    private NamedAPIResource versionGroup;
+    private NamedAPIResource<VersionGroup> versionGroup;
     private List<Name> names;
     @SerializedName("form_names")
     private List<Name> formNames;

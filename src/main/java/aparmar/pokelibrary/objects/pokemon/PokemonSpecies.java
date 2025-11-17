@@ -5,6 +5,8 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.evolution.EvolutionChain;
+import main.java.aparmar.pokelibrary.objects.games.Generation;
 import main.java.aparmar.pokelibrary.objects.locations.PalParkEncounterArea;
 import main.java.aparmar.pokelibrary.objects.utility.APIResource;
 import main.java.aparmar.pokelibrary.objects.utility.Description;
@@ -36,19 +38,19 @@ public class PokemonSpecies {
     @SerializedName("forms_switchable")
     private boolean formsSwitchable;
     @SerializedName("growth_rate")
-    private NamedAPIResource growthRate;
+    private NamedAPIResource<GrowthRate> growthRate;
     @SerializedName("pokedex_numbers")
     private List<PokemonSpeciesDexEntry> pokedexNumbers;
     @SerializedName("egg_groups")
-    private List<NamedAPIResource> eggGroups;
-    private NamedAPIResource color;
-    private NamedAPIResource shape;
+    private List<NamedAPIResource<EggGroup>> eggGroups;
+    private NamedAPIResource<PokemonColor> color;
+    private NamedAPIResource<PokemonShape> shape;
     @SerializedName("evolves_from_species")
-    private NamedAPIResource evolvesFromSpecies;
+    private NamedAPIResource<PokemonSpecies> evolvesFromSpecies;
     @SerializedName("evolution_chain")
-    private APIResource evolutionChain;
-    private NamedAPIResource habitat;
-    private NamedAPIResource generation;
+    private APIResource<EvolutionChain> evolutionChain;
+    private NamedAPIResource<PokemonHabitat> habitat;
+    private NamedAPIResource<Generation> generation;
     private List<Name> names;
     @SerializedName("pal_park_encounters")
     private List<PalParkEncounterArea> palParkEncounters;

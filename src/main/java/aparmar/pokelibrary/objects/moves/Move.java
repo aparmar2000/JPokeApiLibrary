@@ -5,7 +5,13 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.contests.ContestEffect;
+import main.java.aparmar.pokelibrary.objects.contests.ContestType;
+import main.java.aparmar.pokelibrary.objects.contests.SuperContestEffect;
+import main.java.aparmar.pokelibrary.objects.games.Generation;
 import main.java.aparmar.pokelibrary.objects.pokemon.AbilityEffectChange;
+import main.java.aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
+import main.java.aparmar.pokelibrary.objects.pokemon.Type;
 import main.java.aparmar.pokelibrary.objects.utility.APIResource;
 import main.java.aparmar.pokelibrary.objects.utility.MachineVersionDetail;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
@@ -25,20 +31,20 @@ public class Move {
     @SerializedName("contest_combos")
     private ContestComboSets contestCombos;
     @SerializedName("contest_type")
-    private NamedAPIResource contestType;
+    private NamedAPIResource<ContestType> contestType;
     @SerializedName("contest_effect")
-    private APIResource contestEffect;
+    private APIResource<ContestEffect> contestEffect;
     @SerializedName("damage_class")
-    private NamedAPIResource damageClass;
+    private NamedAPIResource<MoveDamageClass> damageClass;
     @SerializedName("effect_entries")
     private List<VerboseEffect> effectEntries;
     @SerializedName("effect_changes")
     private List<AbilityEffectChange> effectChanges;
     @SerializedName("learned_by_pokemon")
-    private List<NamedAPIResource> learnedByPokemon;
+    private List<NamedAPIResource<PokemonSpecies>> learnedByPokemon;
     @SerializedName("flavor_text_entries")
     private List<MoveFlavorText> flavorTextEntries;
-    private NamedAPIResource generation;
+    private NamedAPIResource<Generation> generation;
     private List<MachineVersionDetail> machines;
     private MoveMetaData meta;
     private List<Name> names;
@@ -47,7 +53,7 @@ public class Move {
     @SerializedName("stat_changes")
     private List<MoveStatChange> statChanges;
     @SerializedName("super_contest_effect")
-    private APIResource superContestEffect;
-    private NamedAPIResource target;
-    private NamedAPIResource type;
+    private APIResource<SuperContestEffect> superContestEffect;
+    private NamedAPIResource<MoveTarget> target;
+    private NamedAPIResource<Type> type;
 }

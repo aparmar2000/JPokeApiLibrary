@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.moves.MoveDamageClass;
 import main.java.aparmar.pokelibrary.objects.utility.APIResource;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
@@ -21,8 +22,8 @@ public class Stat {
     private MoveStatAffectSets affectingMoves;
     @SerializedName("affecting_natures")
     private NatureStatAffectSets affectingNatures;
-    private List<APIResource> characteristics;
+    private List<APIResource<Characteristic>> characteristics;
     @SerializedName("move_damage_class")
-    private NamedAPIResource moveDamageClass;
+    private NamedAPIResource<MoveDamageClass> moveDamageClass;
     private List<Name> names;
 }

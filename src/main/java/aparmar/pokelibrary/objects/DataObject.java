@@ -1,10 +1,10 @@
 package main.java.aparmar.pokelibrary.objects;
 
 import lombok.Data;
-import main.java.aparmar.pokelibrary.PokeApiLibrary;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(makeFinal = true)
 public abstract class DataObject {
-	private PokeApiLibrary libInstance;
     private int id;
 }

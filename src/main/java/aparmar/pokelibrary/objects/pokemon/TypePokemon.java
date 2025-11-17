@@ -6,5 +6,5 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 @Data
 public class TypePokemon {
     private int slot;
-    private NamedAPIResource pokemon;
+    private NamedAPIResource<Pokemon> pokemon;
 }

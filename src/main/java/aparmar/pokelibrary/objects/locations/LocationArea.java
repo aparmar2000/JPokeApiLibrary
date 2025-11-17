@@ -17,7 +17,7 @@ public class LocationArea {
     private int gameIndex;
     @SerializedName("encounter_method_rates")
     private List<EncounterMethodRate> encounterMethodRates;
-    private NamedAPIResource location;
+    private NamedAPIResource<Location> location;
     private List<Name> names;
     @SerializedName("pokemon_encounters")
     private List<PokemonEncounter> pokemonEncounters;

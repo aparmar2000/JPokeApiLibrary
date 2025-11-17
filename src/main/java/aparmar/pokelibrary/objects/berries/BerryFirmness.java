@@ -10,6 +10,6 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 public class BerryFirmness {
     private int id;
     private String name;
-    private List<NamedAPIResource> berries;
+    private List<NamedAPIResource<Berry>> berries;
     private List<Name> names;
 }

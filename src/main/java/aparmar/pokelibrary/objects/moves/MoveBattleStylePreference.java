@@ -12,5 +12,5 @@ public class MoveBattleStylePreference {
     @SerializedName("high_hp_preference")
     private int highHpPreference;
     @SerializedName("move_battle_style")
-    private NamedAPIResource moveBattleStyle;
+    private NamedAPIResource<MoveBattleStyle> moveBattleStyle;
 }

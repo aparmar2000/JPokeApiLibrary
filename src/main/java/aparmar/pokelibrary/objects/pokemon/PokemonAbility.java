@@ -10,5 +10,5 @@ public class PokemonAbility {
     @SerializedName("is_hidden")
     private boolean isHidden;
     private int slot;
-    private NamedAPIResource ability;
+    private NamedAPIResource<Ability> ability;
 }

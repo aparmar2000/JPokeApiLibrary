@@ -10,15 +10,15 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 @Data
 public class TypeRelations {
     @SerializedName("no_damage_to")
-    private List<NamedAPIResource> noDamageTo;
+    private List<NamedAPIResource<Type>> noDamageTo;
     @SerializedName("half_damage_to")
-    private List<NamedAPIResource> halfDamageTo;
+    private List<NamedAPIResource<Type>> halfDamageTo;
     @SerializedName("double_damage_to")
-    private List<NamedAPIResource> doubleDamageTo;
+    private List<NamedAPIResource<Type>> doubleDamageTo;
     @SerializedName("no_damage_from")
-    private List<NamedAPIResource> noDamageFrom;
+    private List<NamedAPIResource<Type>> noDamageFrom;
     @SerializedName("half_damage_from")
-    private List<NamedAPIResource> halfDamageFrom;
+    private List<NamedAPIResource<Type>> halfDamageFrom;
     @SerializedName("double_damage_from")
-    private List<NamedAPIResource> doubleDamageFrom;
+    private List<NamedAPIResource<Type>> doubleDamageFrom;
 }

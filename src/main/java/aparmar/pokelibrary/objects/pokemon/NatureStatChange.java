@@ -10,5 +10,5 @@ public class NatureStatChange {
     @SerializedName("max_change")
     private int maxChange;
     @SerializedName("pokeathlon_stat")
-    private NamedAPIResource pokeathlonStat;
+    private NamedAPIResource<PokeathlonStat> pokeathlonStat;
 }

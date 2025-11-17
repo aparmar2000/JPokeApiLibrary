@@ -9,5 +9,5 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 public class PokemonSpeciesVariety {
     @SerializedName("is_default")
     private boolean isDefault;
-    private NamedAPIResource pokemon;
+    private NamedAPIResource<Pokemon> pokemon;
 }

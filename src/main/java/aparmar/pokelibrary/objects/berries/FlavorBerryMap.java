@@ -6,5 +6,5 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 @Data
 public class FlavorBerryMap {
     private int potency;
-    private NamedAPIResource berry;
+    private NamedAPIResource<Berry> berry;
 }

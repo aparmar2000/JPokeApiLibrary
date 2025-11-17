@@ -11,5 +11,5 @@ public class EncounterCondition {
     private int id;
     private String name;
     private List<Name> names;
-    private List<NamedAPIResource> values;
+    private List<NamedAPIResource<EncounterConditionValue>> values;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.games.Generation;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import main.java.aparmar.pokelibrary.objects.utility.VerboseEffect;
@@ -15,7 +16,7 @@ public class Ability {
     private String name;
     @SerializedName("is_main_series")
     private boolean isMainSeries;
-    private NamedAPIResource generation;
+    private NamedAPIResource<Generation> generation;
     private List<Name> names;
     @SerializedName("effect_entries")
     private List<VerboseEffect> effectEntries;

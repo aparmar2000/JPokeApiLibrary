@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.berries.BerryFlavor;
 import main.java.aparmar.pokelibrary.objects.moves.MoveBattleStylePreference;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
@@ -14,13 +15,13 @@ public class Nature {
     private int id;
     private String name;
     @SerializedName("decreased_stat")
-    private NamedAPIResource decreasedStat;
+    private NamedAPIResource<Stat> decreasedStat;
     @SerializedName("increased_stat")
-    private NamedAPIResource increasedStat;
+    private NamedAPIResource<Stat> increasedStat;
     @SerializedName("hates_flavor")
-    private NamedAPIResource hatesFlavor;
+    private NamedAPIResource<BerryFlavor> hatesFlavor;
     @SerializedName("likes_flavor")
-    private NamedAPIResource likesFlavor;
+    private NamedAPIResource<BerryFlavor> likesFlavor;
     @SerializedName("pokeathlon_stat_changes")
     private List<NatureStatChange> pokeathlonStatChanges;
     @SerializedName("move_battle_style_preferences")

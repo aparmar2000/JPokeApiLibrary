@@ -9,5 +9,5 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 public class NaturePokeathlonStatAffect {
     @SerializedName("max_change")
     private int maxChange;
-    private NamedAPIResource nature;
+    private NamedAPIResource<Nature> nature;
 }

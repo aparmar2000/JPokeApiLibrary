@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.evolution.EvolutionChain;
 import main.java.aparmar.pokelibrary.objects.utility.APIResource;
 import main.java.aparmar.pokelibrary.objects.utility.GenerationGameIndex;
 import main.java.aparmar.pokelibrary.objects.utility.MachineVersionDetail;
@@ -21,9 +22,9 @@ public class Item {
     @SerializedName("fling_power")
     private int flingPower;
     @SerializedName("fling_effect")
-    private NamedAPIResource flingEffect;
-    private List<NamedAPIResource> attributes;
-    private NamedAPIResource category;
+    private NamedAPIResource<ItemFlingEffect> flingEffect;
+    private List<NamedAPIResource<ItemAttribute>> attributes;
+    private NamedAPIResource<ItemCategory> category;
     @SerializedName("effect_entries")
     private List<VerboseEffect> effectEntries;
     @SerializedName("flavor_text_entries")
@@ -35,6 +36,6 @@ public class Item {
     @SerializedName("held_by_pokemon")
     private List<ItemHolderPokemon> heldByPokemon;
     @SerializedName("baby_trigger_for")
-    private APIResource babyTriggerFor;
+    private APIResource<EvolutionChain> babyTriggerFor;
     private List<MachineVersionDetail> machines;
 }

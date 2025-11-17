@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
@@ -14,5 +15,5 @@ public class EvolutionTrigger {
     private String name;
     private List<Name> names;
     @SerializedName("pokemon_species")
-    private List<NamedAPIResource> pokemonSpecies;
+    private List<NamedAPIResource<PokemonSpecies>> pokemonSpecies;
 }

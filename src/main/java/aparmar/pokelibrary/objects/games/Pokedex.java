@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.locations.Region;
 import main.java.aparmar.pokelibrary.objects.utility.Description;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
@@ -19,7 +20,7 @@ public class Pokedex {
     private List<Name> names;
     @SerializedName("pokemon_entries")
     private List<PokemonEntry> pokemonEntries;
-    private NamedAPIResource region;
+    private NamedAPIResource<Region> region;
     @SerializedName("version_groups")
-    private List<NamedAPIResource> versionGroups;
+    private List<NamedAPIResource<VersionGroup>> versionGroups;
 }

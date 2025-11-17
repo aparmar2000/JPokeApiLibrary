@@ -11,5 +11,5 @@ public class VerboseEffect {
     @SerializedName("short_effect")
     private String shortEffect;
     
-    private NamedAPIResource language;
+    private NamedAPIResource<Language> language;
 }

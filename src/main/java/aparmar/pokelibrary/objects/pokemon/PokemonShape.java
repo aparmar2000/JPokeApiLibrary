@@ -16,5 +16,5 @@ public class PokemonShape {
     private List<AwesomeName> awesomeNames;
     private List<Name> names;
     @SerializedName("pokemon_species")
-    private List<NamedAPIResource> pokemonSpecies;
+    private List<NamedAPIResource<PokemonSpecies>> pokemonSpecies;
 }

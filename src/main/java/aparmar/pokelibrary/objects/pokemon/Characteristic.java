@@ -16,6 +16,6 @@ public class Characteristic {
     @SerializedName("possible_values")
     private List<Integer> possibleValues;
     @SerializedName("highest_stat")
-    private NamedAPIResource highestStat;
+    private NamedAPIResource<Stat> highestStat;
     private List<Description> descriptions;
 }

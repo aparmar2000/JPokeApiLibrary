@@ -14,5 +14,5 @@ public class Version {
     private String name;
     private List<Name> names;
     @SerializedName("version_group")
-    private NamedAPIResource versionGroup;
+    private NamedAPIResource<VersionGroup> versionGroup;
 }

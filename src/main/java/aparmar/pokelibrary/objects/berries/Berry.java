@@ -5,7 +5,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
-import main.java.aparmar.pokelibrary.ApiPath;
+import main.java.aparmar.pokelibrary.objects.ApiPath;
+import main.java.aparmar.pokelibrary.objects.items.Item;
+import main.java.aparmar.pokelibrary.objects.pokemon.Type;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
@@ -23,9 +25,9 @@ public class Berry {
     private int smoothness;
     @SerializedName("soil_dryness")
     private int soilDryness;
-    private NamedAPIResource firmness;
+    private NamedAPIResource<BerryFirmness> firmness;
     private List<BerryFlavorMap> flavors;
-    private NamedAPIResource item;
+    private NamedAPIResource<Item> item;
     @SerializedName("natural_gift_type")
-    private NamedAPIResource naturalGiftType;
+    private NamedAPIResource<Type> naturalGiftType;
 }

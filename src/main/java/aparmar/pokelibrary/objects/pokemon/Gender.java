@@ -14,5 +14,5 @@ public class Gender {
     @SerializedName("pokemon_species_details")
     private List<PokemonSpeciesGender> pokemonSpeciesDetails;
     @SerializedName("required_for_evolution")
-    private List<NamedAPIResource> requiredForEvolution;
+    private List<NamedAPIResource<PokemonSpecies>> requiredForEvolution;
 }

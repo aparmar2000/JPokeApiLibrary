@@ -20,7 +20,7 @@ public class Pokemon {
     private int order;
     private int weight;
     private List<PokemonAbility> abilities;
-    private List<NamedAPIResource> forms;
+    private List<NamedAPIResource<PokemonForm>> forms;
     @SerializedName("game_indices")
     private List<VersionGameIndex> gameIndices;
     @SerializedName("held_items")
@@ -34,7 +34,7 @@ public class Pokemon {
     private List<PokemonAbilityPast> pastAbilities;
     private PokemonSprites sprites;
     private PokemonCries cries;
-    private NamedAPIResource species;
+    private NamedAPIResource<PokemonSpecies> species;
     private List<PokemonStat> stats;
     private List<PokemonType> types;
 }

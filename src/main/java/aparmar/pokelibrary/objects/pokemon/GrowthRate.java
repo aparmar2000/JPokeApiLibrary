@@ -16,5 +16,5 @@ public class GrowthRate {
     private List<Description> descriptions;
     private List<GrowthRateExperienceLevel> levels;
     @SerializedName("pokemon_species")
-    private List<NamedAPIResource> pokemonSpecies;
+    private List<NamedAPIResource<PokemonSpecies>> pokemonSpecies;
 }

@@ -10,6 +10,6 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 public class ItemPocket {
     private int id;
     private String name;
-    private List<NamedAPIResource> categories;
+    private List<NamedAPIResource<ItemCategory>> categories;
     private List<Name> names;
 }

@@ -13,9 +13,9 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 public class Location {
     private int id;
     private String name;
-    private NamedAPIResource region;
+    private NamedAPIResource<Region> region;
     private List<Name> names;
     @SerializedName("game_indices")
     private List<GenerationGameIndex> gameIndices;
-    private List<NamedAPIResource> areas;
+    private List<NamedAPIResource<LocationArea>> areas;
 }

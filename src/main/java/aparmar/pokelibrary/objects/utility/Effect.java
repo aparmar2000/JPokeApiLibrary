@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class Effect {
 	private String effect;
-	private NamedAPIResource language;
+	private NamedAPIResource<Language> language;
 }

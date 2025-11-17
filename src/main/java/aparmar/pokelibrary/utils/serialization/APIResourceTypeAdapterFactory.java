@@ -12,9 +12,12 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import lombok.RequiredArgsConstructor;
+import main.java.aparmar.pokelibrary.PokeApiLibrary;
 import main.java.aparmar.pokelibrary.objects.utility.APIResource;
 
+@RequiredArgsConstructor
 public class APIResourceTypeAdapterFactory implements TypeAdapterFactory {
+	private final PokeApiLibrary rootApiLibrary;
 
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -43,11 +46,12 @@ public class APIResourceTypeAdapterFactory implements TypeAdapterFactory {
 			return null;
 		}
 		
-		return new APIResourceTypeAdapter<T>(delegate, targetClazz).nullSafe();
+		return new APIResourceTypeAdapter<T>(rootApiLibrary, delegate, targetClazz).nullSafe();
 	}
 	
 	@RequiredArgsConstructor
 	protected static class APIResourceTypeAdapter<T> extends TypeAdapter<T> {
+		private final PokeApiLibrary rootApiLibrary;
 		private final TypeAdapter<T> delegate;
 		@SuppressWarnings("rawtypes")
 		private final Class targetClazz;
@@ -62,6 +66,7 @@ public class APIResourceTypeAdapterFactory implements TypeAdapterFactory {
 		public T read(JsonReader in) throws IOException {
 			APIResource obj = (APIResource) delegate.read(in);
 			obj.setClazz(targetClazz);
+			obj.setLibInstance(rootApiLibrary);
 			
 			return (T) obj;
 		}

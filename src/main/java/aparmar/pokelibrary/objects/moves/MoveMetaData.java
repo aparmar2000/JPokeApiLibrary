@@ -7,8 +7,8 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class MoveMetaData {
-    private NamedAPIResource ailment;
-    private NamedAPIResource category;
+    private NamedAPIResource<MoveAilment> ailment;
+    private NamedAPIResource<MoveCategory> category;
     @SerializedName("min_hits")
     private Integer minHits;
     @SerializedName("max_hits")

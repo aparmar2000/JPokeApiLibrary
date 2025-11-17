@@ -10,5 +10,5 @@ public class PalParkEncounterArea {
     @SerializedName("base_score")
     private int baseScore;
     private int rate;
-    private NamedAPIResource area;
+    private NamedAPIResource<LocationArea> area;
 }

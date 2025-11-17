@@ -9,5 +9,5 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 public class PokemonSpeciesGender {
     private int rate;
     @SerializedName("pokemon_species")
-    private NamedAPIResource pokemonSpecies;
+    private NamedAPIResource<PokemonSpecies> pokemonSpecies;
 }

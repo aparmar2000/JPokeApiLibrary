@@ -10,6 +10,6 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 public class EncounterConditionValue {
     private int id;
     private String name;
-    private NamedAPIResource condition;
+    private NamedAPIResource<EncounterCondition> condition;
     private List<Name> names;
 }

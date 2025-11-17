@@ -7,7 +7,7 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class PokemonStat {
-    private NamedAPIResource stat;
+    private NamedAPIResource<Stat> stat;
     private int effort;
     @SerializedName("base_stat")
     private int baseStat;

@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.moves.Move;
 import main.java.aparmar.pokelibrary.objects.utility.FlavorText;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
@@ -14,5 +15,5 @@ public class SuperContestEffect {
     private int appeal;
     @SerializedName("flavor_text_entries")
     private List<FlavorText> flavorTextEntries;
-    private List<NamedAPIResource> moves;
+    private List<NamedAPIResource<Move>> moves;
 }

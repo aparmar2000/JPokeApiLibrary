@@ -5,13 +5,14 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class ChainLink {
     @SerializedName("is_baby")
     private boolean isBaby;
-    private NamedAPIResource species;
+    private NamedAPIResource<PokemonSpecies> species;
     @SerializedName("evolution_details")
     private List<EvolutionDetail> evolutionDetails;
     @SerializedName("evolves_to")
