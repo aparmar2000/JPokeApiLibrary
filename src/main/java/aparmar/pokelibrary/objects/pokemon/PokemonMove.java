@@ -1,16 +1,16 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.moves.PkmnMove;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.moves.Move;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class PokemonMove {
-    private NamedAPIResource<Move> move;
+    private NamedAPIResource<PkmnMove> move;
     @SerializedName("version_group_details")
     private List<PokemonMoveVersion> versionGroupDetails;
 }

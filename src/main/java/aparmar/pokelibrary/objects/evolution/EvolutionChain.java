@@ -1,12 +1,12 @@
-package main.java.aparmar.pokelibrary.objects.evolution;
+package aparmar.pokelibrary.objects.evolution;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.items.Item;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.items.Item;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 @ApiPath("evolution-chain")

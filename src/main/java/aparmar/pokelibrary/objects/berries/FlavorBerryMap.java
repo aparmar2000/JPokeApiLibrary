@@ -1,7 +1,7 @@
-package main.java.aparmar.pokelibrary.objects.berries;
+package aparmar.pokelibrary.objects.berries;
 
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class FlavorBerryMap {

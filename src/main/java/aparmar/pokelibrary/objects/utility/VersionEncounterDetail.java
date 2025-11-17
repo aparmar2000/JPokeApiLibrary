@@ -1,15 +1,15 @@
-package main.java.aparmar.pokelibrary.objects.utility;
+package aparmar.pokelibrary.objects.utility;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.games.PkmnVersion;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.games.Version;
 
 @Data
 public class VersionEncounterDetail {
-    private NamedAPIResource<Version> version;
+    private NamedAPIResource<PkmnVersion> version;
 
     @SerializedName("max_chance")
     private int maxChance;

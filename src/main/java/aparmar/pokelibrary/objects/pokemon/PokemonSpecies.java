@@ -1,20 +1,20 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.evolution.EvolutionChain;
+import aparmar.pokelibrary.objects.games.PkmnGeneration;
+import aparmar.pokelibrary.objects.locations.PalParkEncounterArea;
+import aparmar.pokelibrary.objects.utility.APIResource;
+import aparmar.pokelibrary.objects.utility.PkmnDescription;
+import aparmar.pokelibrary.objects.utility.FlavorText;
+import aparmar.pokelibrary.objects.utility.PkmnName;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.evolution.EvolutionChain;
-import main.java.aparmar.pokelibrary.objects.games.Generation;
-import main.java.aparmar.pokelibrary.objects.locations.PalParkEncounterArea;
-import main.java.aparmar.pokelibrary.objects.utility.APIResource;
-import main.java.aparmar.pokelibrary.objects.utility.Description;
-import main.java.aparmar.pokelibrary.objects.utility.FlavorText;
-import main.java.aparmar.pokelibrary.objects.utility.Name;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 @ApiPath("pokemon-species")
@@ -53,14 +53,14 @@ public class PokemonSpecies implements IPaginatedDataObject {
     @SerializedName("evolution_chain")
     private APIResource<EvolutionChain> evolutionChain;
     private NamedAPIResource<PokemonHabitat> habitat;
-    private NamedAPIResource<Generation> generation;
-    private List<Name> names;
+    private NamedAPIResource<PkmnGeneration> generation;
+    private List<PkmnName> names;
     @SerializedName("pal_park_encounters")
     private List<PalParkEncounterArea> palParkEncounters;
     @SerializedName("flavor_text_entries")
     private List<FlavorText> flavorTextEntries;
     @SerializedName("form_descriptions")
-    private List<Description> formDescriptions;
+    private List<PkmnDescription> formDescriptions;
     private List<Genus> genera;
     private List<PokemonSpeciesVariety> varieties;
 }

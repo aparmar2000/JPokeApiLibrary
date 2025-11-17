@@ -1,28 +1,28 @@
-package main.java.aparmar.pokelibrary.objects.moves;
+package aparmar.pokelibrary.objects.moves;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.contests.ContestEffect;
+import aparmar.pokelibrary.objects.contests.ContestType;
+import aparmar.pokelibrary.objects.contests.SuperContestEffect;
+import aparmar.pokelibrary.objects.games.PkmnGeneration;
+import aparmar.pokelibrary.objects.pokemon.AbilityEffectChange;
+import aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
+import aparmar.pokelibrary.objects.pokemon.PkmnType;
+import aparmar.pokelibrary.objects.utility.APIResource;
+import aparmar.pokelibrary.objects.utility.MachineVersionDetail;
+import aparmar.pokelibrary.objects.utility.PkmnName;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.utility.VerboseEffect;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.contests.ContestEffect;
-import main.java.aparmar.pokelibrary.objects.contests.ContestType;
-import main.java.aparmar.pokelibrary.objects.contests.SuperContestEffect;
-import main.java.aparmar.pokelibrary.objects.games.Generation;
-import main.java.aparmar.pokelibrary.objects.pokemon.AbilityEffectChange;
-import main.java.aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
-import main.java.aparmar.pokelibrary.objects.pokemon.Type;
-import main.java.aparmar.pokelibrary.objects.utility.APIResource;
-import main.java.aparmar.pokelibrary.objects.utility.MachineVersionDetail;
-import main.java.aparmar.pokelibrary.objects.utility.Name;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
-import main.java.aparmar.pokelibrary.objects.utility.VerboseEffect;
 
 @Data
 @ApiPath("move")
-public class Move implements IPaginatedDataObject {
+public class PkmnMove implements IPaginatedDataObject {
     private int id;
     private String name;
     private int accuracy;
@@ -47,10 +47,10 @@ public class Move implements IPaginatedDataObject {
     private List<NamedAPIResource<PokemonSpecies>> learnedByPokemon;
     @SerializedName("flavor_text_entries")
     private List<MoveFlavorText> flavorTextEntries;
-    private NamedAPIResource<Generation> generation;
+    private NamedAPIResource<PkmnGeneration> generation;
     private List<MachineVersionDetail> machines;
     private MoveMetaData meta;
-    private List<Name> names;
+    private List<PkmnName> names;
     @SerializedName("past_values")
     private List<PastMoveStatValues> pastValues;
     @SerializedName("stat_changes")
@@ -58,5 +58,5 @@ public class Move implements IPaginatedDataObject {
     @SerializedName("super_contest_effect")
     private APIResource<SuperContestEffect> superContestEffect;
     private NamedAPIResource<MoveTarget> target;
-    private NamedAPIResource<Type> type;
+    private NamedAPIResource<PkmnType> type;
 }

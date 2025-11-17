@@ -1,14 +1,14 @@
-package main.java.aparmar.pokelibrary.objects.games;
+package aparmar.pokelibrary.objects.games;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.locations.Region;
+import aparmar.pokelibrary.objects.utility.PkmnDescription;
+import aparmar.pokelibrary.objects.utility.PkmnName;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.locations.Region;
-import main.java.aparmar.pokelibrary.objects.utility.Description;
-import main.java.aparmar.pokelibrary.objects.utility.Name;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class Pokedex {
@@ -16,11 +16,11 @@ public class Pokedex {
     private String name;
     @SerializedName("is_main_series")
     private boolean isMainSeries;
-    private List<Description> descriptions;
-    private List<Name> names;
+    private List<PkmnDescription> descriptions;
+    private List<PkmnName> names;
     @SerializedName("pokemon_entries")
     private List<PokemonEntry> pokemonEntries;
     private NamedAPIResource<Region> region;
     @SerializedName("version_groups")
-    private List<NamedAPIResource<VersionGroup>> versionGroups;
+    private List<NamedAPIResource<PkmnVersionGroup>> versionGroups;
 }

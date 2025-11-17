@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary;
+package aparmar.pokelibrary;
 
 import java.io.File;
 import java.io.FileReader;
@@ -23,19 +23,19 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.utility.APIResource;
+import aparmar.pokelibrary.objects.utility.APIResourceList;
+import aparmar.pokelibrary.objects.utility.NamedAPIResourceList;
+import aparmar.pokelibrary.objects.utility.PokeApiUrl;
+import aparmar.pokelibrary.utils.GsonProvider;
+import aparmar.pokelibrary.utils.RateLimitInterceptor;
+import aparmar.pokelibrary.utils.ResultParseFunction;
+import aparmar.pokelibrary.utils.TooManyRequestsException;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import lombok.extern.java.Log;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.utility.APIResource;
-import main.java.aparmar.pokelibrary.objects.utility.APIResourceList;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResourceList;
-import main.java.aparmar.pokelibrary.objects.utility.PokeApiUrl;
-import main.java.aparmar.pokelibrary.utils.GsonProvider;
-import main.java.aparmar.pokelibrary.utils.RateLimitInterceptor;
-import main.java.aparmar.pokelibrary.utils.ResultParseFunction;
-import main.java.aparmar.pokelibrary.utils.TooManyRequestsException;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

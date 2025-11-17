@@ -1,14 +1,14 @@
-package main.java.aparmar.pokelibrary.objects.evolution;
+package aparmar.pokelibrary.objects.evolution;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.items.Item;
+import aparmar.pokelibrary.objects.locations.Location;
+import aparmar.pokelibrary.objects.moves.PkmnMove;
+import aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
+import aparmar.pokelibrary.objects.pokemon.PkmnType;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.items.Item;
-import main.java.aparmar.pokelibrary.objects.locations.Location;
-import main.java.aparmar.pokelibrary.objects.moves.Move;
-import main.java.aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
-import main.java.aparmar.pokelibrary.objects.pokemon.Type;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class EvolutionDetail {
@@ -18,9 +18,9 @@ public class EvolutionDetail {
     @SerializedName("held_item")
     private NamedAPIResource<Item> heldItem;
     @SerializedName("known_move")
-    private NamedAPIResource<Move> knownMove;
+    private NamedAPIResource<PkmnMove> knownMove;
     @SerializedName("known_move_type")
-    private NamedAPIResource<Type> knownMoveType;
+    private NamedAPIResource<PkmnType> knownMoveType;
     private NamedAPIResource<Location> location;
     @SerializedName("min_level")
     private Integer minLevel;
@@ -35,7 +35,7 @@ public class EvolutionDetail {
     @SerializedName("party_species")
     private NamedAPIResource<PokemonSpecies> partySpecies;
     @SerializedName("party_type")
-    private NamedAPIResource<Type> partyType;
+    private NamedAPIResource<PkmnType> partyType;
     @SerializedName("relative_physical_stats")
     private Integer relativePhysicalStats;
     @SerializedName("time_of_day")

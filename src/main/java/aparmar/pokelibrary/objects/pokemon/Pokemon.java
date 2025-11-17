@@ -1,14 +1,14 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.utility.VersionGameIndex;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
-import main.java.aparmar.pokelibrary.objects.utility.VersionGameIndex;
 
 @Data
 @ApiPath("pokemon")

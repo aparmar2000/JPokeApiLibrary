@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary.objects;
+package aparmar.pokelibrary.objects;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

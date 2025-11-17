@@ -1,14 +1,14 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.utility.PkmnLanguage;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.Language;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class AwesomeName {
     @SerializedName("awesome_name")
     private String awesomeName;
-    private NamedAPIResource<Language> language;
+    private NamedAPIResource<PkmnLanguage> language;
 }

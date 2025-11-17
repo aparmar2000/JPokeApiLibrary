@@ -1,14 +1,14 @@
-package main.java.aparmar.pokelibrary.objects.contests;
+package aparmar.pokelibrary.objects.contests;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.utility.Effect;
+import aparmar.pokelibrary.objects.utility.FlavorText;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.utility.Effect;
-import main.java.aparmar.pokelibrary.objects.utility.FlavorText;
 
 @Data
 @ApiPath("contest-effect")

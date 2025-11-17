@@ -1,12 +1,12 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
 
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class NatureStatAffectSets {
-    private List<NamedAPIResource<Stat>> increase;
-    private List<NamedAPIResource<Stat>> decrease;
+    private List<NamedAPIResource<PkmnStat>> increase;
+    private List<NamedAPIResource<PkmnStat>> decrease;
 }

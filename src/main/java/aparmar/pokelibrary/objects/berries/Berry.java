@@ -1,16 +1,16 @@
-package main.java.aparmar.pokelibrary.objects.berries;
+package aparmar.pokelibrary.objects.berries;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.items.Item;
+import aparmar.pokelibrary.objects.pokemon.PkmnType;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.items.Item;
-import main.java.aparmar.pokelibrary.objects.pokemon.Type;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 @FieldDefaults(makeFinal = true)
@@ -32,5 +32,5 @@ public class Berry implements IPaginatedDataObject {
     private List<BerryFlavorMap> flavors;
     private NamedAPIResource<Item> item;
     @SerializedName("natural_gift_type")
-    private NamedAPIResource<Type> naturalGiftType;
+    private NamedAPIResource<PkmnType> naturalGiftType;
 }

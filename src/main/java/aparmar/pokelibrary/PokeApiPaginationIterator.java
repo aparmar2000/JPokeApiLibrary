@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary;
+package aparmar.pokelibrary;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.google.gson.Gson;
 
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
 
 public class PokeApiPaginationIterator<T extends IPaginatedDataObject> implements Iterator<T> {		
 	private final PokeApiPaginationThread<T> paginationThread;

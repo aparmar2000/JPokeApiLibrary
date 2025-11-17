@@ -1,11 +1,11 @@
-package main.java.aparmar.pokelibrary.objects.moves;
+package aparmar.pokelibrary.objects.moves;
 
+import aparmar.pokelibrary.objects.pokemon.PkmnStat;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.pokemon.Stat;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class MoveStatChange {
     private int change;
-    private NamedAPIResource<Stat> stat;
+    private NamedAPIResource<PkmnStat> stat;
 }

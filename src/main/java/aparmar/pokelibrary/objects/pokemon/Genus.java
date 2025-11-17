@@ -1,11 +1,11 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
+import aparmar.pokelibrary.objects.utility.PkmnLanguage;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.Language;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class Genus {
     private String genus;
-    private NamedAPIResource<Language> language;
+    private NamedAPIResource<PkmnLanguage> language;
 }

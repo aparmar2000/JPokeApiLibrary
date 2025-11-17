@@ -1,13 +1,13 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.locations.LocationArea;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.utility.VersionEncounterDetail;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.locations.LocationArea;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
-import main.java.aparmar.pokelibrary.objects.utility.VersionEncounterDetail;
 
 @Data
 public class LocationAreaEncounter {

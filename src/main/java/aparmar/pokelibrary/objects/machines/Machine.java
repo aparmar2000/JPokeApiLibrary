@@ -1,18 +1,18 @@
-package main.java.aparmar.pokelibrary.objects.machines;
+package aparmar.pokelibrary.objects.machines;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.games.PkmnVersionGroup;
+import aparmar.pokelibrary.objects.items.Item;
+import aparmar.pokelibrary.objects.moves.PkmnMove;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.games.VersionGroup;
-import main.java.aparmar.pokelibrary.objects.items.Item;
-import main.java.aparmar.pokelibrary.objects.moves.Move;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class Machine {
     private int id;
     private NamedAPIResource<Item> item;
-    private NamedAPIResource<Move> move;
+    private NamedAPIResource<PkmnMove> move;
     @SerializedName("version_group")
-    private NamedAPIResource<VersionGroup> versionGroup;
+    private NamedAPIResource<PkmnVersionGroup> versionGroup;
 }

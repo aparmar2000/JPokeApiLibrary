@@ -1,14 +1,14 @@
-package main.java.aparmar.pokelibrary.objects.moves;
+package aparmar.pokelibrary.objects.moves;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.games.PkmnVersionGroup;
+import aparmar.pokelibrary.objects.pokemon.PkmnType;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.utility.VerboseEffect;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.games.VersionGroup;
-import main.java.aparmar.pokelibrary.objects.pokemon.Type;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
-import main.java.aparmar.pokelibrary.objects.utility.VerboseEffect;
 
 @Data
 public class PastMoveStatValues {
@@ -19,7 +19,7 @@ public class PastMoveStatValues {
     private int pp;
     @SerializedName("effect_entries")
     private List<VerboseEffect> effectEntries;
-    private NamedAPIResource<Type> type;
+    private NamedAPIResource<PkmnType> type;
     @SerializedName("version_group")
-    private NamedAPIResource<VersionGroup> versionGroup;
+    private NamedAPIResource<PkmnVersionGroup> versionGroup;
 }

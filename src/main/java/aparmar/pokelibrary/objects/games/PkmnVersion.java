@@ -1,4 +1,4 @@
-package aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.games;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
 
 @Data
-@ApiPath("pokemon-habitat")
-public class PokemonHabitat implements IPaginatedDataObject {
+@ApiPath("version")
+public class PkmnVersion implements IPaginatedDataObject {
     private int id;
     private String name;
     private List<PkmnName> names;
-    @SerializedName("pokemon_species")
-    private List<NamedAPIResource<PokemonSpecies>> pokemonSpecies;
+    @SerializedName("version_group")
+    private NamedAPIResource<PkmnVersionGroup> versionGroup;
 }

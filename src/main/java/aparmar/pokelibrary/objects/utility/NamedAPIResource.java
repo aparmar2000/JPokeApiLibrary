@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary.objects.utility;
+package aparmar.pokelibrary.objects.utility;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

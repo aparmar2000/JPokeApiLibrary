@@ -1,9 +1,9 @@
-package main.java.aparmar.pokelibrary.objects.moves;
+package aparmar.pokelibrary.objects.moves;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class MoveMetaData {

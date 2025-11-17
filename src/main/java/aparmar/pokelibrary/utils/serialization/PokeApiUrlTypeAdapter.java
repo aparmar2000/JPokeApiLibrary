@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary.utils.serialization;
+package aparmar.pokelibrary.utils.serialization;
 
 import java.io.IOException;
 
@@ -7,9 +7,9 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import aparmar.pokelibrary.PokeApiLibrary;
+import aparmar.pokelibrary.objects.utility.PokeApiUrl;
 import lombok.RequiredArgsConstructor;
-import main.java.aparmar.pokelibrary.PokeApiLibrary;
-import main.java.aparmar.pokelibrary.objects.utility.PokeApiUrl;
 
 @RequiredArgsConstructor
 public class PokeApiUrlTypeAdapter extends TypeAdapter<PokeApiUrl> {

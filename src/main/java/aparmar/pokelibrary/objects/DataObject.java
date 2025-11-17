@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary.objects;
+package aparmar.pokelibrary.objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

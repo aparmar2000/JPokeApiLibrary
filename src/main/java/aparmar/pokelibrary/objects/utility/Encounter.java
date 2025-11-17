@@ -1,12 +1,12 @@
-package main.java.aparmar.pokelibrary.objects.utility;
+package aparmar.pokelibrary.objects.utility;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.encounters.EncounterConditionValue;
+import aparmar.pokelibrary.objects.encounters.EncounterMethod;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.encounters.EncounterConditionValue;
-import main.java.aparmar.pokelibrary.objects.encounters.EncounterMethod;
 
 @Data
 public class Encounter {

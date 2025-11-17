@@ -1,14 +1,14 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.utility.PkmnDescription;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.utility.Description;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 @ApiPath("characteristic")
@@ -19,6 +19,6 @@ public class Characteristic implements IPaginatedDataObject {
     @SerializedName("possible_values")
     private List<Integer> possibleValues;
     @SerializedName("highest_stat")
-    private NamedAPIResource<Stat> highestStat;
-    private List<Description> descriptions;
+    private NamedAPIResource<PkmnStat> highestStat;
+    private List<PkmnDescription> descriptions;
 }

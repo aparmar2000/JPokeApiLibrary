@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary.objects.utility;
+package aparmar.pokelibrary.objects.utility;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -11,5 +11,5 @@ public class VerboseEffect {
     @SerializedName("short_effect")
     private String shortEffect;
     
-    private NamedAPIResource<Language> language;
+    private NamedAPIResource<PkmnLanguage> language;
 }

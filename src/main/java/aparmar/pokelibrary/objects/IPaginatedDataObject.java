@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary.objects;
+package aparmar.pokelibrary.objects;
 
 public interface IPaginatedDataObject {
 

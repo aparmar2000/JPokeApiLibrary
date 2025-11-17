@@ -1,11 +1,11 @@
-package main.java.aparmar.pokelibrary.objects.encounters;
+package aparmar.pokelibrary.objects.encounters;
 
+import aparmar.pokelibrary.objects.games.PkmnVersion;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.games.Version;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class EncounterVersionDetails {
     private int rate;
-    private NamedAPIResource<Version> version;
+    private NamedAPIResource<PkmnVersion> version;
 }

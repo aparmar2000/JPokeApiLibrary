@@ -1,11 +1,11 @@
-package main.java.aparmar.pokelibrary.objects.encounters;
+package aparmar.pokelibrary.objects.encounters;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class EncounterMethodRate {

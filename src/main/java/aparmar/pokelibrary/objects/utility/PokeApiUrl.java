@@ -1,12 +1,12 @@
-package main.java.aparmar.pokelibrary.objects.utility;
+package aparmar.pokelibrary.objects.utility;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jetbrains.annotations.Nullable;
 
+import aparmar.pokelibrary.utils.HelperConstants;
 import lombok.Value;
-import main.java.aparmar.pokelibrary.utils.HelperConstants;
 
 @Value
 public class PokeApiUrl {

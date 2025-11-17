@@ -1,15 +1,15 @@
-package main.java.aparmar.pokelibrary.objects.contests;
+package aparmar.pokelibrary.objects.contests;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.moves.PkmnMove;
+import aparmar.pokelibrary.objects.utility.FlavorText;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.ApiPath;
-import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
-import main.java.aparmar.pokelibrary.objects.moves.Move;
-import main.java.aparmar.pokelibrary.objects.utility.FlavorText;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 @ApiPath("super-contest-effect")
@@ -18,5 +18,5 @@ public class SuperContestEffect implements IPaginatedDataObject {
     private int appeal;
     @SerializedName("flavor_text_entries")
     private List<FlavorText> flavorTextEntries;
-    private List<NamedAPIResource<Move>> moves;
+    private List<NamedAPIResource<PkmnMove>> moves;
 }

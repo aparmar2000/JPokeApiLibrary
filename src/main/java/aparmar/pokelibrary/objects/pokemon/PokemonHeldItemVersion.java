@@ -1,11 +1,11 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
+import aparmar.pokelibrary.objects.games.PkmnVersion;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.games.Version;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class PokemonHeldItemVersion {
-    private NamedAPIResource<Version> version;
+    private NamedAPIResource<PkmnVersion> version;
     private int rarity;
 }

@@ -1,13 +1,13 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
 
+import aparmar.pokelibrary.objects.games.PkmnGeneration;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.games.Generation;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class PokemonAbilityPast {
-    private NamedAPIResource<Generation> generation;
+    private NamedAPIResource<PkmnGeneration> generation;
     private List<PokemonAbility> abilities;
 }

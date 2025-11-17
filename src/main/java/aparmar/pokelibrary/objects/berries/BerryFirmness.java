@@ -1,15 +1,15 @@
-package main.java.aparmar.pokelibrary.objects.berries;
+package aparmar.pokelibrary.objects.berries;
 
 import java.util.List;
 
+import aparmar.pokelibrary.objects.utility.PkmnName;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.Name;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class BerryFirmness {
     private int id;
     private String name;
     private List<NamedAPIResource<Berry>> berries;
-    private List<Name> names;
+    private List<PkmnName> names;
 }

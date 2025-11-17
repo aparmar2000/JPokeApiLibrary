@@ -1,17 +1,17 @@
-package main.java.aparmar.pokelibrary.objects.items;
+package aparmar.pokelibrary.objects.items;
 
 import java.util.List;
 
+import aparmar.pokelibrary.objects.utility.PkmnDescription;
+import aparmar.pokelibrary.objects.utility.PkmnName;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.Description;
-import main.java.aparmar.pokelibrary.objects.utility.Name;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class ItemAttribute {
     private int id;
     private String name;
     private List<NamedAPIResource<Item>> items;
-    private List<Name> names;
-    private List<Description> descriptions;
+    private List<PkmnName> names;
+    private List<PkmnDescription> descriptions;
 }

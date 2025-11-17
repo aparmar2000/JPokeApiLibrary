@@ -1,13 +1,13 @@
-package main.java.aparmar.pokelibrary.objects.pokemon;
+package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.games.PkmnVersionGroup;
+import aparmar.pokelibrary.objects.utility.PkmnName;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.games.VersionGroup;
-import main.java.aparmar.pokelibrary.objects.utility.Name;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class PokemonForm {
@@ -28,8 +28,8 @@ public class PokemonForm {
     private List<PokemonFormType> types;
     private PokemonFormSprites sprites;
     @SerializedName("version_group")
-    private NamedAPIResource<VersionGroup> versionGroup;
-    private List<Name> names;
+    private NamedAPIResource<PkmnVersionGroup> versionGroup;
+    private List<PkmnName> names;
     @SerializedName("form_names")
-    private List<Name> formNames;
+    private List<PkmnName> formNames;
 }

@@ -1,15 +1,15 @@
-package main.java.aparmar.pokelibrary.objects.utility;
+package aparmar.pokelibrary.objects.utility;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.games.PkmnVersion;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.games.Version;
 
 @Data
 public class FlavorText {
     @SerializedName("flavor_text")
     private String flavorText;
 
-    private NamedAPIResource<Language> language;
-    private NamedAPIResource<Version> version;
+    private NamedAPIResource<PkmnLanguage> language;
+    private NamedAPIResource<PkmnVersion> version;
 }

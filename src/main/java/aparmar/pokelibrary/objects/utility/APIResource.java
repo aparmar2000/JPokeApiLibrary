@@ -1,7 +1,7 @@
-package main.java.aparmar.pokelibrary.objects.utility;
+package aparmar.pokelibrary.objects.utility;
 
+import aparmar.pokelibrary.PokeApiLibrary;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.PokeApiLibrary;
 
 @Data
 public class APIResource<T> {

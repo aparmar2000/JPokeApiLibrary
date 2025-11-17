@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary.objects.moves;
+package aparmar.pokelibrary.objects.moves;
 
 import lombok.Data;
 

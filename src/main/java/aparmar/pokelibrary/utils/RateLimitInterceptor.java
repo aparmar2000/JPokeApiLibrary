@@ -1,4 +1,4 @@
-package main.java.aparmar.pokelibrary.utils;
+package aparmar.pokelibrary.utils;
 
 import java.io.IOException;
 

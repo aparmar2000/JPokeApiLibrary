@@ -1,9 +1,9 @@
-package main.java.aparmar.pokelibrary.objects.locations;
+package aparmar.pokelibrary.objects.locations;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
-import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
 public class PalParkEncounterArea {
