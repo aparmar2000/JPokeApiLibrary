@@ -5,11 +5,14 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.ApiPath;
+import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
 import main.java.aparmar.pokelibrary.objects.utility.Effect;
 import main.java.aparmar.pokelibrary.objects.utility.FlavorText;
 
 @Data
-public class ContestEffect {
+@ApiPath("contest-effect")
+public class ContestEffect implements IPaginatedDataObject {
     private int id;
     private int appeal;
     private int jam;

@@ -5,12 +5,15 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.ApiPath;
+import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
 import main.java.aparmar.pokelibrary.objects.contests.ContestType;
 import main.java.aparmar.pokelibrary.objects.utility.Name;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
-public class BerryFlavor {
+@ApiPath("berry-flavor")
+public class BerryFlavor implements IPaginatedDataObject {
     private int id;
     private String name;
     private List<BerryFlavorMap> berries;

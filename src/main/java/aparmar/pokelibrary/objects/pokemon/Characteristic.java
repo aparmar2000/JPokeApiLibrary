@@ -5,11 +5,14 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.ApiPath;
+import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
 import main.java.aparmar.pokelibrary.objects.utility.Description;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
-public class Characteristic {
+@ApiPath("characteristic")
+public class Characteristic implements IPaginatedDataObject {
     private int id;
     @SerializedName("gene_modulo")
     private int geneModulo;

@@ -5,11 +5,14 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.ApiPath;
+import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import main.java.aparmar.pokelibrary.objects.utility.VersionGameIndex;
 
 @Data
-public class Pokemon {
+@ApiPath("pokemon")
+public class Pokemon implements IPaginatedDataObject {
     private int id;
     private String name;
     @SerializedName("base_experience")

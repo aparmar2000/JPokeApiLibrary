@@ -5,14 +5,17 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import main.java.aparmar.pokelibrary.objects.ApiPath;
+import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
 import main.java.aparmar.pokelibrary.objects.items.Item;
 import main.java.aparmar.pokelibrary.objects.pokemon.Type;
 import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 
 @Data
+@FieldDefaults(makeFinal = true)
 @ApiPath("berry")
-public class Berry {
+public class Berry implements IPaginatedDataObject {
     private int id;
     private String name;
     @SerializedName("growth_time")

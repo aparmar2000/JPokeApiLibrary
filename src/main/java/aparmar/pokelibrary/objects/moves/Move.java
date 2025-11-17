@@ -5,6 +5,8 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import main.java.aparmar.pokelibrary.objects.ApiPath;
+import main.java.aparmar.pokelibrary.objects.IPaginatedDataObject;
 import main.java.aparmar.pokelibrary.objects.contests.ContestEffect;
 import main.java.aparmar.pokelibrary.objects.contests.ContestType;
 import main.java.aparmar.pokelibrary.objects.contests.SuperContestEffect;
@@ -19,7 +21,8 @@ import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import main.java.aparmar.pokelibrary.objects.utility.VerboseEffect;
 
 @Data
-public class Move {
+@ApiPath("move")
+public class Move implements IPaginatedDataObject {
     private int id;
     private String name;
     private int accuracy;
