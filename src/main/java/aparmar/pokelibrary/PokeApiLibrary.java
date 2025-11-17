@@ -161,6 +161,11 @@ public class PokeApiLibrary {
 		          Spliterators.spliteratorUnknownSize(getPaginatedResourceIterator(resourceClazz, paginationSize), Spliterator.ORDERED),
 		          false);
 	}
+	public <T extends IPaginatedDataObject> List<T> getResourceList(Class<T> resourceClazz, int paginationSize, int limit) {
+		return getPaginatedResourceStream(resourceClazz, paginationSize)
+				.limit(limit)
+				.collect(Collectors.toCollection(ArrayList::new));
+	}
 	public <T extends IPaginatedDataObject> List<T> getResourceList(Class<T> resourceClazz, int paginationSize) {
 		return getPaginatedResourceStream(resourceClazz, paginationSize)
 				.collect(Collectors.toCollection(ArrayList::new));
