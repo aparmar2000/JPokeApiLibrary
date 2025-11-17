@@ -10,7 +10,7 @@ import lombok.Value;
 
 @Value
 public class PokeApiUrl {
-	private static final Pattern URL_PATTERN = Pattern.compile("pokeapi\\.co/api/v2/(\\w+)/(\\w+)(?:/(\\w+))?", Pattern.CASE_INSENSITIVE);
+	private static final Pattern URL_PATTERN = Pattern.compile("pokeapi\\.co/api/v2/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(?:/([a-zA-Z0-9_-]+))?", Pattern.CASE_INSENSITIVE);
 	
 	private String endpointId;
 	private String id;
@@ -27,11 +27,11 @@ public class PokeApiUrl {
 	}
 	
 	public String getUrl() {		
-		return HelperConstants.POKE_API_BASE_URL + getRelativeUrl();
+		return HelperConstants.POKE_API_BASE_URL + "/" + getRelativeUrl();
 	}
 	
 	public String getRelativeUrl() {
-		String url = "/"+endpointId+"/"+id;
+		String url = endpointId+"/"+id;
 		if (subEndpointId != null) {
 			url += "/"+subEndpointId;
 		}

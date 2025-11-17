@@ -19,6 +19,7 @@ import java.util.stream.StreamSupport;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -36,7 +37,6 @@ import aparmar.pokelibrary.utils.TooManyRequestsException;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import lombok.extern.java.Log;
-import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -44,7 +44,7 @@ import okhttp3.ResponseBody;
 
 @Log
 public class PokeApiLibrary {
-	private static final RateLimitInterceptor sharedRateLimiter = new RateLimitInterceptor(10);
+	private static final RateLimitInterceptor sharedRateLimiter = new RateLimitInterceptor(100);
 	
 	private final Gson gson;
 	private final OkHttpClient client;
@@ -89,7 +89,9 @@ public class PokeApiLibrary {
 		@Override
 		public Object load(APIResource resource) throws Exception {
 			val resourceUrl = resource.getUrl();
-			val cacheFile = cacheFolder.toPath().resolve(Path.of(resourceUrl.getRelativeUrl(),".json")).toFile();
+			val cacheFile = cacheFolder.toPath()
+					.resolve(Path.of(resourceUrl.getRelativeUrl()+".json"))
+					.toFile();
 			
 			boolean fileCacheAllowed = true;
 			if (APIResourceList.class.isAssignableFrom(resource.getClazz()) || NamedAPIResourceList.class.isAssignableFrom(resource.getClazz())) {
@@ -102,6 +104,7 @@ public class PokeApiLibrary {
 					return gson.fromJson(in, resource.getClazz());
 				} catch (JsonSyntaxException | JsonIOException | IOException e) {
 					PokeApiLibrary.log.warning(String.format("Failed to read cache file at '%s' - falling back to web.", cacheFile));
+					PokeApiLibrary.log.warning(e.getLocalizedMessage());
 				}
 			}
 			
@@ -110,14 +113,12 @@ public class PokeApiLibrary {
 			
 			// Update file cache
 			if (fileCacheAllowed) {
-				if (cacheFile.canWrite()) {
-					try (FileWriter out = new FileWriter(cacheFile)) {
-						gson.toJson(fetched, out);
-					} catch (JsonSyntaxException | JsonIOException | IOException e) {
-						PokeApiLibrary.log.severe(String.format("Failed to write cache file at '%s'.", cacheFile));
-					}
-				} else {
+				Files.createParentDirs(cacheFile);
+				try (FileWriter out = new FileWriter(cacheFile)) {
+					gson.toJson(fetched, out);
+				} catch (JsonSyntaxException | JsonIOException | IOException e) {
 					PokeApiLibrary.log.severe(String.format("Failed to write cache file at '%s'.", cacheFile));
+					PokeApiLibrary.log.severe(e.getLocalizedMessage());
 				}
 			}
 			
@@ -191,12 +192,9 @@ public class PokeApiLibrary {
 	}
 	
 	// -----
-	<T> T sendRequest(String host, ResultParseFunction<T> deserializer) throws IOException, JsonSyntaxException, JsonIOException {
+	<T> T sendRequest(String url, ResultParseFunction<T> deserializer) throws IOException, JsonSyntaxException, JsonIOException {
 		Request request = new Request.Builder()
-				.url(new HttpUrl.Builder()
-						.scheme("https")
-						.host(host)
-						.build())
+				.url("https://" + url)
 				.get()
 				.build();
 		return executeAndParseRequest(deserializer, request);
