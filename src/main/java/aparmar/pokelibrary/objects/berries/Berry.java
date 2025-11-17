@@ -1,0 +1,31 @@
+package main.java.aparmar.pokelibrary.objects.berries;
+
+import java.util.List;
+
+import com.google.gson.annotations.SerializedName;
+
+import lombok.Data;
+import main.java.aparmar.pokelibrary.ApiPath;
+import main.java.aparmar.pokelibrary.objects.utility.NamedAPIResource;
+
+@Data
+@ApiPath("berry")
+public class Berry {
+    private int id;
+    private String name;
+    @SerializedName("growth_time")
+    private int growthTime;
+    @SerializedName("max_harvest")
+    private int maxHarvest;
+    @SerializedName("natural_gift_power")
+    private int naturalGiftPower;
+    private int size;
+    private int smoothness;
+    @SerializedName("soil_dryness")
+    private int soilDryness;
+    private NamedAPIResource firmness;
+    private List<BerryFlavorMap> flavors;
+    private NamedAPIResource item;
+    @SerializedName("natural_gift_type")
+    private NamedAPIResource naturalGiftType;
+}
