@@ -2,10 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>PokeApiLibrary</groupId>
+	<groupId>com.github.aparmar2000</groupId>
 	<artifactId>PokeApiLibrary</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	
+	<version>0.0.2-SNAPSHOT</version>
+
+	<name>${project.groupId}:${project.artifactId}</name>
 	<packaging>jar</packaging>
 	
 	<properties>
@@ -28,8 +29,8 @@
 							<artifactId>lombok</artifactId>
 							<version>1.18.42</version>
 						</path>
-                    <encoding>${project.build.sourceEncoding}</encoding>
 					</annotationProcessorPaths>
+                    <encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
