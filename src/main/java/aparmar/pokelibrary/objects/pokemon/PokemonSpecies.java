@@ -1,16 +1,19 @@
 package aparmar.pokelibrary.objects.pokemon;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.ILangData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.evolution.EvolutionChain;
 import aparmar.pokelibrary.objects.games.PkmnGeneration;
 import aparmar.pokelibrary.objects.locations.PalParkEncounterArea;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
+import aparmar.pokelibrary.objects.utility.PkmnLanguage;
 import aparmar.pokelibrary.objects.utility.FlavorText;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
@@ -63,4 +66,11 @@ public class PokemonSpecies implements IPaginatedDataObject {
     private List<PkmnDescription> formDescriptions;
     private List<Genus> genera;
     private List<PokemonSpeciesVariety> varieties;
+    
+    public Optional<PkmnName> tryGetNameByLang(PkmnLanguage language) {
+    	return ILangData.tryGetByLang(names, language);
+    }
+    public Optional<PkmnName> tryGetNameByLangName(String languageName) {
+    	return ILangData.tryGetByLangName(names, languageName);
+    }
 }
