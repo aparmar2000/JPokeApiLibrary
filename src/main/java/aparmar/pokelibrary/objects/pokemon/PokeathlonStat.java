@@ -5,13 +5,16 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(makeFinal = true)
 @ApiPath("pokeathlon-stat")
-public class PokeathlonStat implements IPaginatedDataObject {
+public class PokeathlonStat implements IPaginatedDataObject, IEnumerablePkmnData {
     private int id;
     private String name;
     private List<PkmnName> names;

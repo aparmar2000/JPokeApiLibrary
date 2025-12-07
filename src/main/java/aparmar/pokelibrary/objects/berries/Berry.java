@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.items.Item;
 import aparmar.pokelibrary.objects.pokemon.PkmnType;
@@ -15,7 +16,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(makeFinal = true)
 @ApiPath("berry")
-public class Berry implements IPaginatedDataObject {
+public class Berry implements IPaginatedDataObject, IEnumerablePkmnData {
     private int id;
     private String name;
     @SerializedName("growth_time")

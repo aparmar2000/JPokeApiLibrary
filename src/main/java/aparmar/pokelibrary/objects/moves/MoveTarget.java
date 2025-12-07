@@ -3,15 +3,18 @@ package aparmar.pokelibrary.objects.moves;
 import java.util.List;
 
 import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(makeFinal = true)
 @ApiPath("move-target")
-public class MoveTarget implements IPaginatedDataObject {
+public class MoveTarget implements IPaginatedDataObject, IEnumerablePkmnData {
     private int id;
     private String name;
     private List<PkmnDescription> descriptions;

@@ -5,16 +5,19 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.moves.MoveDamageClass;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(makeFinal = true)
 @ApiPath("stat")
-public class PkmnStat implements IPaginatedDataObject {
+public class PkmnStat implements IPaginatedDataObject, IEnumerablePkmnData {
     private int id;
     private String name;
     @SerializedName("game_index")

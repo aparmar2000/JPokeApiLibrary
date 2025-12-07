@@ -25,6 +25,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
 import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.APIResourceList;
@@ -52,6 +53,8 @@ public class PokeApiLibrary {
 	private final LoadingCache<APIResource, Object> memCache;
 	private final LoadingCache<String, PokeApiUrl> urlCache;
 	
+	private final LoadingCache<Class<IEnumerablePkmnData>, PokeDataIndex<IEnumerablePkmnData>> indexCache;
+	
 	public PokeApiLibrary(File cacheFolder, int concurrencyLevel, boolean weak) {
 		client = buildHttpClient(Duration.ofSeconds(5));
 		gson = GsonProvider.buildGsonInstance(this);
@@ -69,6 +72,11 @@ public class PokeApiLibrary {
 				.concurrencyLevel(concurrencyLevel)
 				.weakValues()
 				.build(CacheLoader.from(PokeApiUrl::fromUrlString));
+		
+		indexCache = CacheBuilder.newBuilder()
+				.concurrencyLevel(concurrencyLevel)
+				.weakValues()
+				.build(CacheLoader.from(dataClazz->new PokeDataIndex<IEnumerablePkmnData>(this, dataClazz)));
 	}
 	
 	private OkHttpClient buildHttpClient(Duration readTimeout) {
@@ -189,6 +197,17 @@ public class PokeApiLibrary {
 	public <T extends IPaginatedDataObject> List<T> getResourceList(Class<T> resourceClazz) {
 		return getPaginatedResourceStream(resourceClazz, 10000)
 				.collect(Collectors.toCollection(ArrayList::new));
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends IEnumerablePkmnData> PokeDataIndex<T> getEnumerableIndex(Class<T> resourceClazz) {
+		try {
+			return (PokeDataIndex<T>) indexCache.get((Class<IEnumerablePkmnData>) resourceClazz);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	// -----

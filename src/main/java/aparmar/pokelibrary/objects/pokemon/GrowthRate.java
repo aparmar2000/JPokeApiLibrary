@@ -5,11 +5,17 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IEnumerablePkmnData;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
-public class GrowthRate {
+@FieldDefaults(makeFinal = true)
+@ApiPath("growth-rate")
+public class GrowthRate implements IPaginatedDataObject, IEnumerablePkmnData {
     private int id;
     private String name;
     private String formula;

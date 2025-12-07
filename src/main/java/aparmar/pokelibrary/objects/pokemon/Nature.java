@@ -5,16 +5,19 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.berries.BerryFlavor;
 import aparmar.pokelibrary.objects.moves.MoveBattleStylePreference;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(makeFinal = true)
 @ApiPath("nature")
-public class Nature implements IPaginatedDataObject {
+public class Nature implements IPaginatedDataObject, IEnumerablePkmnData {
     private int id;
     private String name;
     @SerializedName("decreased_stat")

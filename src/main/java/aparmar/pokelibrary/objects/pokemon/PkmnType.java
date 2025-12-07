@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.games.PkmnGeneration;
 import aparmar.pokelibrary.objects.moves.PkmnMove;
@@ -13,10 +14,12 @@ import aparmar.pokelibrary.objects.utility.GenerationGameIndex;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@FieldDefaults(makeFinal = true)
 @ApiPath("type")
-public class PkmnType implements IPaginatedDataObject {
+public class PkmnType implements IPaginatedDataObject, IEnumerablePkmnData {
     private int id;
     private String name;
     @SerializedName("damage_relations")
