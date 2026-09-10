@@ -12,10 +12,12 @@ import java.util.List;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -24,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
+import aparmar.pokelibrary.apidatahelpers.PkmnDataProvider;
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
@@ -54,6 +57,8 @@ public class PokeApiLibrary {
 	private final LoadingCache<String, PokeApiUrl> urlCache;
 	
 	private final LoadingCache<Class<IEnumerablePkmnData>, PokeDataIndex<IEnumerablePkmnData>> indexCache;
+	@SuppressWarnings("rawtypes")
+	private final Cache<Class<PkmnDataProvider>, PkmnDataProvider> dataProviderCache;
 	
 	public PokeApiLibrary(File cacheFolder, int concurrencyLevel, boolean weak) {
 		client = buildHttpClient(Duration.ofSeconds(5));
@@ -77,6 +82,10 @@ public class PokeApiLibrary {
 				.concurrencyLevel(concurrencyLevel)
 				.weakValues()
 				.build(CacheLoader.from(dataClazz->new PokeDataIndex<IEnumerablePkmnData>(this, dataClazz)));
+		
+		dataProviderCache = CacheBuilder.newBuilder()
+				.concurrencyLevel(concurrencyLevel)
+				.build();
 	}
 	
 	private OkHttpClient buildHttpClient(Duration readTimeout) {
@@ -207,6 +216,18 @@ public class PokeApiLibrary {
 			e.printStackTrace();
 		}
 		
+		return null;
+	}
+	
+	// -----
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public <K extends PkmnDataProvider.INamedEnum, V extends IPaginatedDataObject, T extends PkmnDataProvider<K, V>> T getDataProvider(Class<T> clazz, Function<PokeApiLibrary, T> constructor) {
+		try {
+			return (T) dataProviderCache.get((Class<PkmnDataProvider>) clazz, ()->constructor.apply(this));
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
