@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.items.Item;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
@@ -13,6 +14,7 @@ import lombok.Data;
 public class EvolutionChain implements IPaginatedDataObject {
     private int id;
     @SerializedName("baby_trigger_item")
+    @OptionalField
     private NamedAPIResource<Item> babyTriggerItem;
     private ChainLink chain;
 }

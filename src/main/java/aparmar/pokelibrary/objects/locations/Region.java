@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.games.PkmnGeneration;
 import aparmar.pokelibrary.objects.games.Pokedex;
 import aparmar.pokelibrary.objects.games.PkmnVersionGroup;
@@ -24,6 +25,7 @@ public class Region implements IPaginatedDataObject, IEnumerablePkmnData {
     private String name;
     private List<PkmnName> names;
     @SerializedName("main_generation")
+    @OptionalField
     private NamedAPIResource<PkmnGeneration> mainGeneration;
     private List<NamedAPIResource<Pokedex>> pokedexes;
     @SerializedName("version_groups")

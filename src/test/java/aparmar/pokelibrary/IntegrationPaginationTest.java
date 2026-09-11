@@ -1,5 +1,6 @@
 package aparmar.pokelibrary;
 
+import static aparmar.pokelibrary.utils.TestUtils.autoTestClassGetters;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
@@ -28,8 +29,8 @@ class IntegrationPaginationTest {
 					.forEach(File::delete);
 			}
 		}
-		
-		Files.createDirectory(TEST_CACHE.toPath());
+
+		Files.createDirectories(TEST_CACHE.toPath());
 	}
 
 	@BeforeEach
@@ -41,6 +42,9 @@ class IntegrationPaginationTest {
 	void test() {
 		val loadedPokemon = apiLibrary.getResourceList(Pokemon.class, 100, 100);
 		assertTrue(loadedPokemon.size() == 100);
+		for (Pokemon loadedPokmn : loadedPokemon) {
+			autoTestClassGetters(loadedPokmn);
+		}
 	}
 
 }

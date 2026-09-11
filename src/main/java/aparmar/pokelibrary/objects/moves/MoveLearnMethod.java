@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.games.PkmnVersionGroup;
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
 import aparmar.pokelibrary.objects.utility.PkmnName;
@@ -20,5 +21,6 @@ public class MoveLearnMethod implements IPaginatedDataObject {
     private List<PkmnDescription> descriptions;
     private List<PkmnName> names;
     @SerializedName("version_groups")
+    @OptionalField
     private List<NamedAPIResource<PkmnVersionGroup>> versionGroups;
 }

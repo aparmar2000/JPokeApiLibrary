@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.ILangData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.evolution.EvolutionChain;
 import aparmar.pokelibrary.objects.games.PkmnGeneration;
 import aparmar.pokelibrary.objects.locations.PalParkEncounterArea;
@@ -52,17 +53,22 @@ public class PokemonSpecies implements IPaginatedDataObject {
     private NamedAPIResource<PokemonColor> color;
     private NamedAPIResource<PokemonShape> shape;
     @SerializedName("evolves_from_species")
+    @OptionalField
     private NamedAPIResource<PokemonSpecies> evolvesFromSpecies;
     @SerializedName("evolution_chain")
+    @OptionalField
     private APIResource<EvolutionChain> evolutionChain;
+    @OptionalField
     private NamedAPIResource<PokemonHabitat> habitat;
     private NamedAPIResource<PkmnGeneration> generation;
     private List<PkmnName> names;
     @SerializedName("pal_park_encounters")
+    @OptionalField
     private List<PalParkEncounterArea> palParkEncounters;
     @SerializedName("flavor_text_entries")
     private List<FlavorText> flavorTextEntries;
     @SerializedName("form_descriptions")
+    @OptionalField
     private List<PkmnDescription> formDescriptions;
     private List<Genus> genera;
     private List<PokemonSpeciesVariety> varieties;

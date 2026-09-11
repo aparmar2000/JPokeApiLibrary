@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.locations.Region;
 import aparmar.pokelibrary.objects.moves.MoveLearnMethod;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
@@ -20,7 +21,9 @@ public class PkmnVersionGroup implements IPaginatedDataObject {
     private NamedAPIResource<PkmnGeneration> generation;
     @SerializedName("move_learn_methods")
     private List<NamedAPIResource<MoveLearnMethod>> moveLearnMethods;
+    @OptionalField
     private List<NamedAPIResource<Pokedex>> pokedexes;
+    @OptionalField
     private List<NamedAPIResource<Region>> regions;
     private List<NamedAPIResource<PkmnVersion>> versions;
 }

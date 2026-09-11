@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import aparmar.pokelibrary.objects.utility.VersionGameIndex;
 import lombok.Data;
@@ -27,13 +28,16 @@ public class Pokemon implements IPaginatedDataObject {
     @SerializedName("game_indices")
     private List<VersionGameIndex> gameIndices;
     @SerializedName("held_items")
+    @OptionalField
     private List<PokemonHeldItem> heldItems;
     @SerializedName("location_area_encounters")
     private String locationAreaEncounters;
     private List<PokemonMove> moves;
     @SerializedName("past_types")
+    @OptionalField
     private List<PokemonTypePast> pastTypes;
     @SerializedName("past_abilities")
+    @OptionalField
     private List<PokemonAbilityPast> pastAbilities;
     private PokemonSprites sprites;
     private PokemonCries cries;

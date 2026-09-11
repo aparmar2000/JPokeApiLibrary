@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.moves.MoveDamageClass;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.PkmnName;
@@ -28,8 +29,10 @@ public class PkmnStat implements IPaginatedDataObject, IEnumerablePkmnData {
     private MoveStatAffectSets affectingMoves;
     @SerializedName("affecting_natures")
     private NatureStatAffectSets affectingNatures;
+    @OptionalField
     private List<APIResource<Characteristic>> characteristics;
     @SerializedName("move_damage_class")
+    @OptionalField
     private NamedAPIResource<MoveDamageClass> moveDamageClass;
     private List<PkmnName> names;
 }
