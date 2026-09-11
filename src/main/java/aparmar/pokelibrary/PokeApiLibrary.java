@@ -234,7 +234,7 @@ public class PokeApiLibrary {
 	// -----
 	<T> T sendRequest(String url, ResultParseFunction<T> deserializer) throws IOException, JsonSyntaxException, JsonIOException {
 		Request request = new Request.Builder()
-				.url("https://" + url)
+				.url(url.contains("https") ? url : "https://" + url)
 				.get()
 				.build();
 		return executeAndParseRequest(deserializer, request);
