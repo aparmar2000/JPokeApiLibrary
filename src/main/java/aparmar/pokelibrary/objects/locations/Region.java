@@ -13,16 +13,18 @@ import aparmar.pokelibrary.objects.games.Pokedex;
 import aparmar.pokelibrary.objects.games.PkmnVersionGroup;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("region")
-public class Region implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
+public class Region extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     private List<NamedAPIResource<Location>> locations;
-    private String name;
     private List<PkmnName> names;
     @SerializedName("main_generation")
     @OptionalField

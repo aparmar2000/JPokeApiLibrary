@@ -15,15 +15,17 @@ import aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
 import aparmar.pokelibrary.objects.pokemon.PkmnType;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("generation")
-public class PkmnGeneration implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class PkmnGeneration extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     @OptionalField
     private List<NamedAPIResource<Ability>> abilities;
     private List<PkmnName> names;

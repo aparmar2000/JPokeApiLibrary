@@ -8,12 +8,16 @@ import aparmar.pokelibrary.objects.locations.Region;
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-public class Pokedex {
-    private int id;
-    private String name;
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
+public class Pokedex extends PkmnNamedDataObject {
     @SerializedName("is_main_series")
     private boolean isMainSeries;
     private List<PkmnDescription> descriptions;

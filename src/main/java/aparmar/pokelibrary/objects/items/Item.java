@@ -13,12 +13,16 @@ import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.VerboseEffect;
 import aparmar.pokelibrary.objects.utility.VersionGroupFlavorText;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-public class Item {
-    private int id;
-    private String name;
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
+public class Item extends PkmnNamedDataObject {
     private int cost;
     @SerializedName("fling_power")
     private int flingPower;

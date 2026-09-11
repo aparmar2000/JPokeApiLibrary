@@ -7,18 +7,20 @@ import com.google.gson.annotations.SerializedName;
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import aparmar.pokelibrary.objects.items.Item;
 import aparmar.pokelibrary.objects.pokemon.PkmnType;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import lombok.AccessLevel;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("berry")
-public class Berry implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class Berry extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     @SerializedName("growth_time")
     private int growthTime;
     @SerializedName("max_harvest")

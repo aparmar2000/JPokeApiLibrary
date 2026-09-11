@@ -9,15 +9,17 @@ import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("growth-rate")
-public class GrowthRate implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class GrowthRate extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     private String formula;
     private List<PkmnDescription> descriptions;
     private List<GrowthRateExperienceLevel> levels;

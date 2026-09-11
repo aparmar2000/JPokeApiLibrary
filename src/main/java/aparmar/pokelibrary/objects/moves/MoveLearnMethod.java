@@ -11,13 +11,17 @@ import aparmar.pokelibrary.objects.games.PkmnVersionGroup;
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("move-learn-method")
-public class MoveLearnMethod implements IPaginatedDataObject {
-    private int id;
-    private String name;
+public class MoveLearnMethod extends PkmnNamedDataObject implements IPaginatedDataObject {
     private List<PkmnDescription> descriptions;
     private List<PkmnName> names;
     @SerializedName("version_groups")

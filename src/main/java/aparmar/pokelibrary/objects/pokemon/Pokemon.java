@@ -9,13 +9,17 @@ import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import aparmar.pokelibrary.objects.utility.VersionGameIndex;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("pokemon")
-public class Pokemon implements IPaginatedDataObject {
-    private int id;
-    private String name;
+public class Pokemon extends PkmnNamedDataObject implements IPaginatedDataObject {
     @SerializedName("base_experience")
     private int baseExperience;
     private int height;

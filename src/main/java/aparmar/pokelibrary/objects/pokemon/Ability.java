@@ -10,13 +10,17 @@ import aparmar.pokelibrary.objects.games.PkmnGeneration;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import aparmar.pokelibrary.objects.utility.VerboseEffect;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("ability")
-public class Ability implements IPaginatedDataObject {
-    private int id;
-    private String name;
+public class Ability extends PkmnNamedDataObject implements IPaginatedDataObject {
     @SerializedName("is_main_series")
     private boolean isMainSeries;
     private NamedAPIResource<PkmnGeneration> generation;

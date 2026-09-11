@@ -14,15 +14,17 @@ import aparmar.pokelibrary.objects.moves.MoveDamageClass;
 import aparmar.pokelibrary.objects.utility.GenerationGameIndex;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("type")
-public class PkmnType implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class PkmnType extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     @SerializedName("damage_relations")
     private TypeRelations damageRelations;
     @SerializedName("past_damage_relations")

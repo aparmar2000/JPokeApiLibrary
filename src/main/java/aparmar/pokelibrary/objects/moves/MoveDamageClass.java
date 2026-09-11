@@ -8,15 +8,17 @@ import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("move-damage-class")
-public class MoveDamageClass implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class MoveDamageClass extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     private List<PkmnDescription> descriptions;
     private List<NamedAPIResource<PkmnMove>> moves;
     private List<PkmnName> names;

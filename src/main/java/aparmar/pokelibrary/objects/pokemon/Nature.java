@@ -12,15 +12,17 @@ import aparmar.pokelibrary.objects.berries.BerryFlavor;
 import aparmar.pokelibrary.objects.moves.MoveBattleStylePreference;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("nature")
-public class Nature implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class Nature extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     @SerializedName("decreased_stat")
     @OptionalField
     private NamedAPIResource<PkmnStat> decreasedStat;

@@ -12,15 +12,17 @@ import aparmar.pokelibrary.objects.moves.MoveDamageClass;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("stat")
-public class PkmnStat implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class PkmnStat extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     @SerializedName("game_index")
     private int gameIndex;
     @SerializedName("is_battle_only")

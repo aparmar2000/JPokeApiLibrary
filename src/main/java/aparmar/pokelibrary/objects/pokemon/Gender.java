@@ -9,15 +9,17 @@ import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("gender")
-public class Gender implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class Gender extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     @SerializedName("pokemon_species_details")
     private List<PokemonSpeciesGender> pokemonSpeciesDetails;
     @SerializedName("required_for_evolution")

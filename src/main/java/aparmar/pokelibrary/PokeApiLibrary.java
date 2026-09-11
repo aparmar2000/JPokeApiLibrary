@@ -48,7 +48,7 @@ import okhttp3.ResponseBody;
 
 @Log
 public class PokeApiLibrary {
-	private static final RateLimitInterceptor sharedRateLimiter = new RateLimitInterceptor(100);
+	private static final RateLimitInterceptor sharedRateLimiter = new RateLimitInterceptor(50);
 	
 	private final Gson gson;
 	private final OkHttpClient client;
@@ -224,7 +224,7 @@ public class PokeApiLibrary {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public <K extends PkmnDataProvider.INamedEnum, V extends IPaginatedDataObject, T extends PkmnDataProvider<K, V>> T getDataProvider(Class<T> clazz, Function<PokeApiLibrary, T> constructor) {
 		try {
-			return (T) dataProviderCache.get((Class<PkmnDataProvider>) clazz, ()->constructor.apply(this));
+			return (T) dataProviderCache.get((Class<PkmnDataProvider>) (Class) clazz, ()->constructor.apply(this));
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}

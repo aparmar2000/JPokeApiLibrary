@@ -18,13 +18,17 @@ import aparmar.pokelibrary.objects.utility.PkmnLanguage;
 import aparmar.pokelibrary.objects.utility.FlavorText;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("pokemon-species")
-public class PokemonSpecies implements IPaginatedDataObject {
-    private int id;
-    private String name;
+public class PokemonSpecies extends PkmnNamedDataObject implements IPaginatedDataObject {
     private int order;
     @SerializedName("gender_rate")
     private int genderRate;

@@ -8,12 +8,17 @@ import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("characteristic")
-public class Characteristic implements IPaginatedDataObject {
-    private int id;
+public class Characteristic extends PkmnDataObject implements IPaginatedDataObject {
     @SerializedName("gene_modulo")
     private int geneModulo;
     @SerializedName("possible_values")

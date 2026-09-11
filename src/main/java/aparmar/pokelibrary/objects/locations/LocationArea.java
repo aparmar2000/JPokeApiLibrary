@@ -9,13 +9,17 @@ import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.encounters.EncounterMethodRate;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("location-area")
-public class LocationArea implements IPaginatedDataObject {
-    private int id;
-    private String name;
+public class LocationArea extends PkmnNamedDataObject implements IPaginatedDataObject {
     @SerializedName("game_index")
     private int gameIndex;
     @SerializedName("encounter_method_rates")

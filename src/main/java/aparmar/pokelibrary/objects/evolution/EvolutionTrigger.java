@@ -7,12 +7,16 @@ import com.google.gson.annotations.SerializedName;
 import aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
 import aparmar.pokelibrary.objects.utility.PkmnName;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-public class EvolutionTrigger {
-    private int id;
-    private String name;
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
+public class EvolutionTrigger extends PkmnNamedDataObject {
     private List<PkmnName> names;
     @SerializedName("pokemon_species")
     private List<NamedAPIResource<PokemonSpecies>> pokemonSpecies;

@@ -7,15 +7,17 @@ import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
-@FieldDefaults(makeFinal = true)
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("berry-firmness")
-public class BerryFirmness implements IPaginatedDataObject, IEnumerablePkmnData {
-    private int id;
-    private String name;
+public class BerryFirmness extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     private List<NamedAPIResource<Berry>> berries;
     private List<PkmnName> names;
 }

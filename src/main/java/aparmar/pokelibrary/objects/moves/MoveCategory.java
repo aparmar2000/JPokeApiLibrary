@@ -6,13 +6,17 @@ import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.PkmnDescription;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("move-category")
-public class MoveCategory implements IPaginatedDataObject {
-    private int id;
-    private String name;
+public class MoveCategory extends PkmnNamedDataObject implements IPaginatedDataObject {
     private List<NamedAPIResource<PkmnMove>> moves;
     private List<PkmnDescription> descriptions;
 }

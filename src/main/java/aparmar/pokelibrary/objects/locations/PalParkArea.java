@@ -7,13 +7,17 @@ import com.google.gson.annotations.SerializedName;
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.utility.PkmnName;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import lombok.Data;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
+@Setter(value = AccessLevel.NONE)
 @ApiPath("pal-park-area")
-public class PalParkArea implements IPaginatedDataObject {
-    private int id;
-    private String name;
+public class PalParkArea extends PkmnNamedDataObject implements IPaginatedDataObject {
     private List<PkmnName> names;
     @SerializedName("pokemon_encounters")
     private List<PalParkEncounterSpecies> pokemonEncounters;
