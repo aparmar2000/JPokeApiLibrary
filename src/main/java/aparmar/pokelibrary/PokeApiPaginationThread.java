@@ -9,6 +9,7 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.PkmnDataObject;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.APIResourceList;
 import aparmar.pokelibrary.utils.HelperConstants;
@@ -17,7 +18,7 @@ import lombok.val;
 import okhttp3.ResponseBody;
 
 @RequiredArgsConstructor
-public class PokeApiPaginationThread<T extends IPaginatedDataObject> extends Thread {
+public class PokeApiPaginationThread<T extends PkmnDataObject & IPaginatedDataObject> extends Thread {
 	private final PokeApiLibrary apiLibrary;
 	private final Gson gson;
 	private final String apiEndpoint;

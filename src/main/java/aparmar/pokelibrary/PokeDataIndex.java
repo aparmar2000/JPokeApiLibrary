@@ -9,8 +9,9 @@ import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableMap;
 
 import aparmar.pokelibrary.objects.IEnumerablePkmnData;
+import aparmar.pokelibrary.objects.PkmnDataObject;
 
-public class PokeDataIndex<T extends IEnumerablePkmnData> {
+public class PokeDataIndex<T extends PkmnDataObject & IEnumerablePkmnData> {
 	private final Map<Integer, T> index;
 	
 	PokeDataIndex(PokeApiLibrary pokeApiLibrary, Class<T> dataClazz) {

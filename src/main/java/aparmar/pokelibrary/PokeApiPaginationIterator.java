@@ -7,8 +7,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import com.google.gson.Gson;
 
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.PkmnDataObject;
 
-public class PokeApiPaginationIterator<T extends IPaginatedDataObject> implements Iterator<T> {		
+public class PokeApiPaginationIterator<T extends PkmnDataObject & IPaginatedDataObject> implements Iterator<T> {		
 	private final PokeApiPaginationThread<T> paginationThread;
 	private final ConcurrentLinkedQueue<T> itemQueue = new ConcurrentLinkedQueue<>();
 	

@@ -1,10 +1,11 @@
 package aparmar.pokelibrary.objects.utility;
 
 import aparmar.pokelibrary.PokeApiLibrary;
+import aparmar.pokelibrary.objects.PkmnDataObject;
 import lombok.Data;
 
 @Data
-public class APIResource<T> {
+public class APIResource<T extends PkmnDataObject> {
 	private transient PokeApiLibrary libInstance;
 	private transient Class<T> clazz;
 	private PokeApiUrl url;

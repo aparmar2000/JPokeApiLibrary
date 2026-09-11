@@ -17,12 +17,13 @@ import com.google.common.collect.ImmutableSet;
 
 import aparmar.pokelibrary.PokeApiLibrary;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.PkmnDataObject;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import lombok.val;
 import lombok.extern.java.Log;
 
 @Log
-public abstract class PkmnDataProvider<K extends PkmnDataProvider.INamedEnum, V extends IPaginatedDataObject> implements Map<K, V> {
+public abstract class PkmnDataProvider<K extends PkmnDataProvider.INamedEnum, V extends PkmnDataObject & IPaginatedDataObject> implements Map<K, V> {
 	public static interface INamedEnum {
 		public String getName();
 	}

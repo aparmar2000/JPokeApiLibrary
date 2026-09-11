@@ -21,6 +21,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
+import aparmar.pokelibrary.objects.LoadSource;
+import aparmar.pokelibrary.objects.PkmnDataObject;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.PokeApiUrl;
 import aparmar.pokelibrary.utils.TestUtils.ComposedGetter;
@@ -28,6 +30,7 @@ import lombok.val;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@Disabled
 public class MacroAutoEndpointTest {
 	private static final File TEST_CACHE = new File("test_cache");
 	private static final int HARD_DEPTH_LIMIT = 8;
@@ -50,7 +53,7 @@ public class MacroAutoEndpointTest {
 
 	@ParameterizedTest(name = "testFetchableDataObjects({2})")
 	@MethodSource("dataObjectsArgumentSource")
-	<T extends IPaginatedDataObject> void testDataObjects(Class<T> dataObjectClazz, Collection<ComposedGetter<T, APIResource<?>>> dataObjectGetters, String dataObjectClazzName) {
+	<T extends PkmnDataObject & IPaginatedDataObject> void testDataObjects(Class<T> dataObjectClazz, Collection<ComposedGetter<T, APIResource<?>>> dataObjectGetters, String dataObjectClazzName) {
 		val loadedObjects = apiLibrary.getResourceList(dataObjectClazz, 25, 25);
 		
 		assertNotNull(loadedObjects, "Loaded objects should not be null for " + dataObjectClazz.getSimpleName());
@@ -71,13 +74,13 @@ public class MacroAutoEndpointTest {
 				assertNotNull(resource, "Resource must not be null");
 				assertNotNull(resource.getUrl(), "Resource URL must not be null");
 
-				Object firstInstance = resource.get();
+				PkmnDataObject firstInstance = resource.get();
 				assertNotNull(firstInstance, 
 						"Fetchable data object should be fetchable for " + resource.getUrl().getRelativeUrl());
 				autoTestClassGetters(firstInstance);
 
 				// Verify in-memory cache
-				Object secondInstance = resource.get();
+				PkmnDataObject secondInstance = resource.get();
 				assertNotNull(secondInstance, "Second resolution must not return null");
 				assertSame(firstInstance, secondInstance, 
 						"Second resolution of " + resource.getUrl().getRelativeUrl() + " should return the same cached instance from memory");
@@ -91,10 +94,11 @@ public class MacroAutoEndpointTest {
 				// Verify file cache used
 				PokeApiLibrary diskVerificationLibrary = new PokeApiLibrary(TEST_CACHE, 5, false);
 				resource.setLibInstance(diskVerificationLibrary);
-				Object diskLoaded = resource.get();
+				PkmnDataObject diskLoaded = resource.get();
 				resource.setLibInstance(apiLibrary); // restore
 				assertNotNull(diskLoaded, "Resource should be loadable from disk cache for " + url.getRelativeUrl());
 				assertEquals(firstInstance, diskLoaded, "Object loaded from disk cache should equal original object");
+				assertEquals(LoadSource.FILE_CACHE, diskLoaded.getLoadSource(), "Object loaded from disk cache should have a source of FILE_CACHE");
 			}
 		}
 	}

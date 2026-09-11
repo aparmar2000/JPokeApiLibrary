@@ -24,14 +24,13 @@ import aparmar.pokelibrary.MacroAutoEndpointTest;
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.OptionalField;
-import aparmar.pokelibrary.objects.utility.APIResource;
-import aparmar.pokelibrary.objects.utility.PokeApiUrl;
+import aparmar.pokelibrary.objects.PkmnDataObject;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Value;
 
-public class TestUtils {	
+public class TestUtils {
 	@SuppressWarnings("rawtypes")
 	private static ListMultimap<Class, WrappedGetter> classGetterCache = MultimapBuilder.hashKeys().arrayListValues().build();
 	
@@ -156,12 +155,8 @@ public class TestUtils {
 	
 	public static boolean isLibraryDataObject(Class<?> clazz) {
 		return clazz != null
-				&& clazz.getName().startsWith("aparmar.pokelibrary.objects")
-				&& !clazz.isEnum()
-				&& !clazz.isInterface()
 				&& !Modifier.isAbstract(clazz.getModifiers())
-				&& !APIResource.class.isAssignableFrom(clazz)
-				&& !PokeApiUrl.class.isAssignableFrom(clazz);
+				&& PkmnDataObject.class.isAssignableFrom(clazz);
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

@@ -2,6 +2,9 @@ package aparmar.pokelibrary.objects;
 
 import java.util.Date;
 
+import javax.annotation.Nullable;
+
+import aparmar.pokelibrary.utils.ReflectionUtils;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,5 +21,16 @@ public abstract class PkmnDataObject {
 	
 	protected Date getRefreshTime() {
 		return new Date(refreshTimeMs);
+	}
+
+	public static <T extends PkmnDataObject> T replicateWithNewSource(T inst, LoadSource newSource, @Nullable Long newRefreshTimeMs) {
+		T copy = ReflectionUtils.shallowReplicate(inst);
+		
+		copy.loadSource = newSource;
+		if (newRefreshTimeMs != null) {
+			copy.refreshTimeMs = newRefreshTimeMs;
+		}
+		
+		return copy;
 	}
 }

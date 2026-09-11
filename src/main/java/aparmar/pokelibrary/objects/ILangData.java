@@ -28,19 +28,19 @@ public interface ILangData {
 		return tryGetByLangName(entries.stream(), langaugeName);
 	}
 
-	public static <T extends ILangData> Optional<T> tryGetUnwrappedByLang(Stream<NamedAPIResource<T>> entries, PkmnLanguage langauge) {
+	public static <T extends PkmnNamedDataObject & ILangData> Optional<T> tryGetUnwrappedByLang(Stream<NamedAPIResource<T>> entries, PkmnLanguage langauge) {
 		return tryGetByLang(entries.map(NamedAPIResource::get), langauge);
 	}
-	public static <T extends ILangData> Optional<T> tryGetUnwrappedByLang(Collection<NamedAPIResource<T>> entries, PkmnLanguage langauge) {
+	public static <T extends PkmnNamedDataObject & ILangData> Optional<T> tryGetUnwrappedByLang(Collection<NamedAPIResource<T>> entries, PkmnLanguage langauge) {
 		return tryGetUnwrappedByLang(entries.stream(), langauge);
 	}
-	public static <T extends ILangData> Optional<T> tryGetUnwrappedByLang(Collection<NamedAPIResource<T>> entries, NamedAPIResource<PkmnLanguage> langauge) {
+	public static <T extends PkmnNamedDataObject & ILangData> Optional<T> tryGetUnwrappedByLang(Collection<NamedAPIResource<T>> entries, NamedAPIResource<PkmnLanguage> langauge) {
 		return tryGetUnwrappedByLang(entries, langauge.get());
 	}
-	public static <T extends ILangData> Optional<T> tryGetUnwrappedByLangName(Stream<NamedAPIResource<T>> entries, String langaugeName) {
+	public static <T extends PkmnNamedDataObject & ILangData> Optional<T> tryGetUnwrappedByLangName(Stream<NamedAPIResource<T>> entries, String langaugeName) {
 		return tryGetByLangName(entries.map(NamedAPIResource::get), langaugeName);
 	}
-	public static <T extends ILangData> Optional<T> tryGetUnwrappedByLangName(Collection<NamedAPIResource<T>> entries, String langaugeName) {
+	public static <T extends PkmnNamedDataObject & ILangData> Optional<T> tryGetUnwrappedByLangName(Collection<NamedAPIResource<T>> entries, String langaugeName) {
 		return tryGetUnwrappedByLangName(entries.stream(), langaugeName);
 	}
 }
