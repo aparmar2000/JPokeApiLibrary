@@ -32,6 +32,7 @@ import aparmar.pokelibrary.objects.IEnumerablePkmnData;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.LoadSource;
 import aparmar.pokelibrary.objects.PkmnDataObject;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.APIResourceList;
 import aparmar.pokelibrary.objects.utility.NamedAPIResourceList;
@@ -189,6 +190,34 @@ public class PokeApiLibrary {
 			throw e.getCause();
 		}
 	}
+	
+	public <T extends PkmnDataObject> T getResourceById(Class<T> clazz, int id) throws JsonSyntaxException, JsonIOException, IOException {
+		return getResource(getResourceReferenceByClassAndId(clazz, id));
+	}
+	public <T extends PkmnNamedDataObject> T getResourceByName(Class<T> clazz, String name) throws JsonSyntaxException, JsonIOException, IOException {
+		return getResource(getResourceReferenceByClassAndName(clazz, name));
+	}
+	
+	public <T extends PkmnDataObject> APIResource<T> getResourceReferenceByClassAndId(Class<T> clazz, int id) {
+		val apiResource = new APIResource<T>();
+		
+		apiResource.setUrl(PokeApiUrl.fromClassAndId(clazz, id));
+		apiResource.setLibInstance(this);
+		apiResource.setClazz(clazz);
+		
+		return apiResource;
+	}
+	public <T extends PkmnNamedDataObject> APIResource<T> getResourceReferenceByClassAndName(Class<T> clazz, String name) {
+		val apiResource = new APIResource<T>();
+		
+		apiResource.setUrl(PokeApiUrl.fromClassAndName(clazz, name));
+		apiResource.setLibInstance(this);
+		apiResource.setClazz(clazz);
+		
+		return apiResource;
+	}
+	
+	// ---
 
 	@SuppressWarnings("unchecked")
 	private <T extends PkmnDataObject> T getResource(APIResourceRequest<T,?> resourceRequest) throws JsonSyntaxException, JsonIOException, IOException {
@@ -207,7 +236,7 @@ public class PokeApiLibrary {
 	            throw (IOException) cause;
 	        }
 			
-			throw new UnexpectedException("LoadingCache encountered unforseen exception type during excecution!", e);
+			throw new RuntimeException("LoadingCache encountered unforseen exception type during excecution!", cause);
 		}
 	}
 	public <T extends PkmnDataObject> T getResource(APIResource<T> resource) throws JsonSyntaxException, JsonIOException, IOException {
