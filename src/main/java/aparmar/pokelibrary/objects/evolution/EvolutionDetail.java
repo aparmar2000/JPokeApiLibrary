@@ -2,11 +2,14 @@ package aparmar.pokelibrary.objects.evolution;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.items.Item;
 import aparmar.pokelibrary.objects.locations.Location;
 import aparmar.pokelibrary.objects.moves.PkmnMove;
 import aparmar.pokelibrary.objects.pokemon.PokemonSpecies;
+import aparmar.pokelibrary.objects.pokemon.Gender;
 import aparmar.pokelibrary.objects.pokemon.PkmnType;
+import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import lombok.Data;
 
@@ -14,7 +17,8 @@ import lombok.Data;
 public class EvolutionDetail {
     private NamedAPIResource<Item> item;
     private NamedAPIResource<EvolutionTrigger> trigger;
-    private Integer gender;
+    @OptionalField
+    private APIResource<Gender> gender;
     @SerializedName("held_item")
     private NamedAPIResource<Item> heldItem;
     @SerializedName("known_move")

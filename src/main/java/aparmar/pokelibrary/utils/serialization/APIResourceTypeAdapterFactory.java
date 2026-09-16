@@ -9,10 +9,14 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import aparmar.pokelibrary.PokeApiLibrary;
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import aparmar.pokelibrary.objects.utility.APIResource;
+import aparmar.pokelibrary.objects.utility.PokeApiUrl;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -64,7 +68,17 @@ public class APIResourceTypeAdapterFactory implements TypeAdapterFactory {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
 		public T read(JsonReader in) throws IOException {
-			APIResource obj = (APIResource) delegate.read(in);
+			final ApiPath apiPathAnnotation = (ApiPath) targetClazz.getAnnotation(ApiPath.class);
+			APIResource obj;
+			if (apiPathAnnotation != null && in.peek() == JsonToken.NUMBER) {
+				obj = new APIResource();
+				obj.setUrl( PokeApiUrl.fromApiPathAnnotationAndId(apiPathAnnotation, in.nextInt()) );
+			} else if (apiPathAnnotation != null && in.peek() == JsonToken.STRING && PkmnNamedDataObject.class.isAssignableFrom(targetClazz)) {
+				obj = new APIResource();
+				obj.setUrl( PokeApiUrl.fromApiPathAnnotationAndName(apiPathAnnotation, in.nextString()) );
+			} else {
+				obj = (APIResource) delegate.read(in);
+			}
 			obj.setClazz(targetClazz);
 			obj.setLibInstance(rootApiLibrary);
 			
