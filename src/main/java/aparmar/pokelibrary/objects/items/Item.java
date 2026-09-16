@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import aparmar.pokelibrary.objects.ApiPath;
+import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.OptionalField;
 import aparmar.pokelibrary.objects.evolution.EvolutionChain;
 import aparmar.pokelibrary.objects.utility.APIResource;
@@ -22,10 +24,13 @@ import lombok.Setter;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
-public class Item extends PkmnNamedDataObject {
-    private int cost;
+@ApiPath("item")
+public class Item extends PkmnNamedDataObject implements IPaginatedDataObject {
+    @OptionalField
+    private List<ItemPrice> prices;
     @SerializedName("fling_power")
-    private int flingPower;
+    @OptionalField
+    private Integer flingPower;
     @SerializedName("fling_effect")
     @OptionalField
     private NamedAPIResource<ItemFlingEffect> flingEffect;

@@ -42,6 +42,7 @@ import aparmar.pokelibrary.utils.RateLimitInterceptor;
 import aparmar.pokelibrary.utils.ResultParseFunction;
 import aparmar.pokelibrary.utils.TooManyRequestsException;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.val;
@@ -56,6 +57,7 @@ import okhttp3.ResponseBody;
 public class PokeApiLibrary {
 	private static final RateLimitInterceptor sharedRateLimiter = new RateLimitInterceptor(50);
 	
+	@Getter
 	private final Gson gson;
 	private final OkHttpClient client;
 	@SuppressWarnings("rawtypes")
