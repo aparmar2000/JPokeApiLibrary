@@ -191,17 +191,29 @@ public class PokeApiLibrary {
 	}
 
 	@SuppressWarnings("unchecked")
-	private <T extends PkmnDataObject> T getResource(APIResourceRequest<T,?> resourceRequest) throws Throwable {
+	private <T extends PkmnDataObject> T getResource(APIResourceRequest<T,?> resourceRequest) throws JsonSyntaxException, JsonIOException, IOException {
 		try {
 			return (T) memCache.get(resourceRequest);
 		} catch (ExecutionException e) {
-			throw e.getCause();
+			val cause = e.getCause();
+
+	        if (cause instanceof JsonSyntaxException) {
+	            throw (JsonSyntaxException) cause;
+	        }
+	        if (cause instanceof JsonIOException) {
+	            throw (JsonIOException) cause;
+	        }
+			if (cause instanceof IOException) {
+	            throw (IOException) cause;
+	        }
+			
+			throw new UnexpectedException("LoadingCache encountered unforseen exception type during excecution!", e);
 		}
 	}
-	public <T extends PkmnDataObject> T getResource(APIResource<T> resource) throws Throwable {
+	public <T extends PkmnDataObject> T getResource(APIResource<T> resource) throws JsonSyntaxException, JsonIOException, IOException {
 		return getResource(APIResourceRequest.of(resource));
 	}
-	public <T extends PkmnDataObject> T getResource(APIResource<T> resource, boolean disableCache) throws Throwable {
+	public <T extends PkmnDataObject> T getResource(APIResource<T> resource, boolean disableCache) throws JsonSyntaxException, JsonIOException, IOException {
 		if (disableCache) {
 			memCache.invalidate(APIResourceRequest.of(resource));
 		}
