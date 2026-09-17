@@ -12,6 +12,7 @@ import aparmar.pokelibrary.utils.serialization.RootLibraryTypeAdapter;
 public class GsonProvider {
 	public static Gson buildGsonInstance(PokeApiLibrary pokeApiLibrary) {
 		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();
 		
 		gsonBuilder.registerTypeAdapter(PokeApiLibrary.class, new RootLibraryTypeAdapter(pokeApiLibrary));
 		gsonBuilder.registerTypeAdapterFactory(new APIResourceTypeAdapterFactory(pokeApiLibrary));

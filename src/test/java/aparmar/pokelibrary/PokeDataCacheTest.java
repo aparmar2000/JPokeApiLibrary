@@ -13,10 +13,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import aparmar.pokelibrary.PokeDataCache.APIResourcePaginationRequest;
 import aparmar.pokelibrary.PokeDataCache.APIResourceRequest;
 import aparmar.pokelibrary.objects.LoadSource;
 import aparmar.pokelibrary.objects.berries.Berry;
+import aparmar.pokelibrary.objects.pokemon.Pokemon;
 import aparmar.pokelibrary.objects.utility.APIResource;
+import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import aparmar.pokelibrary.objects.utility.PokeApiUrl;
 
 class PokeDataCacheTest {
@@ -117,5 +120,125 @@ class PokeDataCacheTest {
 
 		cache.invalidateAll();
 		assertEquals(0, cache.getMemCache().size());
+		assertEquals(0, cache.getMemCachePagination().size());
+	}
+
+	@Test
+	void testPaginationRequestProperties() {
+		APIResourcePaginationRequest<Pokemon> req1 = APIResourcePaginationRequest.of(Pokemon.class, 0);
+		assertTrue(req1.allowFileCache());
+		assertEquals(Pokemon.class, req1.getResourceClazz());
+		assertEquals(0, req1.getIndex());
+
+		APIResourcePaginationRequest<Pokemon> req2 = APIResourcePaginationRequest.of(Pokemon.class, 0, false);
+		assertFalse(req2.allowFileCache());
+		assertEquals(req1, req2); // allowFileCache excluded from equals/hashCode
+
+		APIResourcePaginationRequest<Pokemon> req3 = APIResourcePaginationRequest.of(Pokemon.class, 1);
+		assertNotEquals(req1, req3);
+	}
+
+	@Test
+	void testPaginationInMemoryAndDiskCaching() {
+		NamedAPIResource<Pokemon> pokemonResource = new NamedAPIResource<>();
+		pokemonResource.setName("bulbasaur");
+		pokemonResource.setUrl(PokeApiUrl.fromClassAndId(Pokemon.class, 1));
+		pokemonResource.setClazz(Pokemon.class);
+		pokemonResource.setLibInstance(apiLibrary);
+
+		// Store in cache
+		cache.updateCachedPaginationResult(Pokemon.class, 0, pokemonResource);
+
+		// In-memory lookup returns identical instance
+		APIResource<Pokemon> inMemory = cache.getCachedPaginationResult(Pokemon.class, 0);
+		assertNotNull(inMemory);
+		assertSame(pokemonResource, inMemory);
+
+		// Verify disk file exists
+		File expectedFile = cache.getPaginationCacheFile(Pokemon.class, 0);
+		assertNotNull(expectedFile);
+		assertTrue(expectedFile.exists(), "Pagination cache file must exist: " + expectedFile);
+		assertTrue(expectedFile.length() > 0, "Pagination cache file must not be empty");
+
+		// Clear memory cache and verify loading from disk
+		cache.invalidatePagination();
+		assertEquals(0, cache.getMemCachePagination().size());
+
+		APIResource<Pokemon> fromDisk = cache.getCachedPaginationResult(Pokemon.class, 0);
+		assertNotNull(fromDisk);
+		assertEquals(pokemonResource.getUrl(), fromDisk.getUrl());
+		assertEquals(Pokemon.class, fromDisk.getClazz());
+		assertNotNull(fromDisk.getLibInstance());
+		assertTrue(fromDisk instanceof NamedAPIResource);
+		assertEquals("bulbasaur", ((NamedAPIResource<Pokemon>) fromDisk).getName());
+	}
+
+	@Test
+	void testPaginationEndpointIsolation() {
+		NamedAPIResource<Pokemon> pokemonResource = new NamedAPIResource<>();
+		pokemonResource.setName("bulbasaur");
+		pokemonResource.setUrl(PokeApiUrl.fromClassAndId(Pokemon.class, 1));
+		pokemonResource.setClazz(Pokemon.class);
+		pokemonResource.setLibInstance(apiLibrary);
+
+		NamedAPIResource<Berry> berryResource = new NamedAPIResource<>();
+		berryResource.setName("cheri");
+		berryResource.setUrl(PokeApiUrl.fromClassAndId(Berry.class, 1));
+		berryResource.setClazz(Berry.class);
+		berryResource.setLibInstance(apiLibrary);
+
+		cache.updateCachedPaginationResult(Pokemon.class, 0, pokemonResource);
+		cache.updateCachedPaginationResult(Berry.class, 0, berryResource);
+
+		APIResource<Pokemon> loadedPokemon = cache.getCachedPaginationResult(Pokemon.class, 0);
+		APIResource<Berry> loadedBerry = cache.getCachedPaginationResult(Berry.class, 0);
+
+		assertNotNull(loadedPokemon);
+		assertNotNull(loadedBerry);
+		assertEquals("bulbasaur", ((NamedAPIResource<Pokemon>) loadedPokemon).getName());
+		assertEquals("cheri", ((NamedAPIResource<Berry>) loadedBerry).getName());
+		assertEquals(Pokemon.class, loadedPokemon.getClazz());
+		assertEquals(Berry.class, loadedBerry.getClazz());
+	}
+
+	@Test
+	void testPaginationCountCaching() {
+		assertNull(cache.getCachedPaginationCount(Pokemon.class));
+
+		cache.updateCachedPaginationCount(Pokemon.class, 1302);
+		assertEquals(1302, cache.getCachedPaginationCount(Pokemon.class));
+
+		File countFile = cache.getPaginationCountCacheFile(Pokemon.class);
+		assertNotNull(countFile);
+		assertTrue(countFile.exists(), "Count file must exist");
+		assertTrue(countFile.length() > 0, "Count file must not be empty");
+
+		// Invalidate memory, read from disk
+		cache.invalidatePagination();
+		assertEquals(1302, cache.getCachedPaginationCount(Pokemon.class));
+	}
+
+	@Test
+	void testPaginationInvalidationByClass() {
+		NamedAPIResource<Pokemon> pokemonResource = new NamedAPIResource<>();
+		pokemonResource.setName("bulbasaur");
+		pokemonResource.setUrl(PokeApiUrl.fromClassAndId(Pokemon.class, 1));
+
+		NamedAPIResource<Berry> berryResource = new NamedAPIResource<>();
+		berryResource.setName("cheri");
+		berryResource.setUrl(PokeApiUrl.fromClassAndId(Berry.class, 1));
+
+		cache.updateCachedPaginationResult(Pokemon.class, 0, pokemonResource);
+		cache.updateCachedPaginationResult(Berry.class, 0, berryResource);
+
+		cache.invalidatePagination(Pokemon.class);
+
+		// Pokemon should not be in memory cache
+		APIResourcePaginationRequest<Pokemon> pokeReq = APIResourcePaginationRequest.of(Pokemon.class, 0, false);
+		assertNull(cache.getMemCachePagination().getIfPresent(pokeReq));
+
+		// Berry should still be in memory cache
+		APIResourcePaginationRequest<Berry> berryReq = APIResourcePaginationRequest.of(Berry.class, 0, false);
+		assertNotNull(cache.getMemCachePagination().getIfPresent(berryReq));
 	}
 }

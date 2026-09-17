@@ -15,6 +15,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
+import aparmar.pokelibrary.PaginationCacheUsage;
 import aparmar.pokelibrary.PokeApiLibrary;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.PkmnDataObject;
@@ -43,7 +44,7 @@ public abstract class PkmnDataProvider<K extends PkmnDataProvider.INamedEnum, V 
 		this.keyClazz = keyClazz;
 		this.valueClazz = valueClazz;
 		
-		dataObjectMap = pokeApi.getPaginatedResourceStream(valueClazz)
+		dataObjectMap = pokeApi.getPaginatedResourceStream(valueClazz, true, PaginationCacheUsage.USE_CACHE)
 			.collect(Collectors.toMap(this::getStringName, Function.identity(), (a,b)->a, HashMap::new));
 		
 		for (K presetEnum : keyClazz.getEnumConstants()) {

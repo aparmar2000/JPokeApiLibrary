@@ -13,10 +13,10 @@ public class PokeApiPaginationIterator<T extends PkmnDataObject & IPaginatedData
 	private final PokeApiPaginationThread<T> paginationThread;
 	private final ConcurrentLinkedQueue<T> itemQueue = new ConcurrentLinkedQueue<>();
 	
-	PokeApiPaginationIterator(PokeApiLibrary apiLibrary, Gson gson, String apiEndpoint, Class<T> clazz, int paginationSize) {
+	PokeApiPaginationIterator(PokeApiLibrary apiLibrary, Gson gson, String apiEndpoint, Class<T> clazz, int paginationSize, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
 		super();
 		
-		paginationThread = new PokeApiPaginationThread<T>(apiLibrary, gson, apiEndpoint, clazz, paginationSize, itemQueue);
+		paginationThread = new PokeApiPaginationThread<T>(apiLibrary, gson, apiEndpoint, clazz, paginationSize, useItemCache, paginationCacheUsage, itemQueue);
 		paginationThread.start();
 	}
 

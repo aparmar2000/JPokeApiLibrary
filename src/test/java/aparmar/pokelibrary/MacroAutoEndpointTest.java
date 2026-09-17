@@ -54,7 +54,7 @@ public class MacroAutoEndpointTest {
 	@ParameterizedTest(name = "testFetchableDataObjects({2})")
 	@MethodSource("dataObjectsArgumentSource")
 	<T extends PkmnDataObject & IPaginatedDataObject> void testDataObjects(Class<T> dataObjectClazz, Collection<ComposedGetter<T, APIResource<?>>> dataObjectGetters, String dataObjectClazzName) {
-		val loadedObjects = apiLibrary.getResourceList(dataObjectClazz, 25, 25);
+		val loadedObjects = apiLibrary.getResourceList(dataObjectClazz, 25, 25, true, PaginationCacheUsage.USE_CACHE);
 		
 		assertNotNull(loadedObjects, "Loaded objects should not be null for " + dataObjectClazz.getSimpleName());
 		assertFalse(loadedObjects.isEmpty(), "Loaded objects should not be empty for " + dataObjectClazz.getSimpleName());

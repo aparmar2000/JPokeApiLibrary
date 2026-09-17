@@ -29,6 +29,7 @@ public class ReflectionUtils {
 	
 	@SuppressWarnings("unchecked")
 	public static <T> T shallowReplicate(T inst) {
+		if (inst == null) { return null; }
 		return ((ReflectionReplicator<T>)REPLICATOR_CACHE.getUnchecked(inst.getClass())).replicate(inst);
 	}
 	
