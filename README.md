@@ -1,7 +1,6 @@
 [![Release](https://img.shields.io/github/v/release/aparmar2000/JPokeApiLibrary?style=flat)](https://github.com/aparmar2000/JPokeApiLibrary/releases)
-[![Build](https://github.com/aparmar2000/JPokeApiLibrary/actions/workflows/build.yml/badge.svg)](https://github.com/aparmar2000/JPokeApiLibrary/actions/workflows/build.yml)
-[![Java 11](https://img.shields.io/badge/Java-11%2B-ED8B00?style=flat&logo=openjdk&logoColor=white)](https://openjdk.org/)
 [![](https://jitpack.io/v/aparmar2000/JPokeApiLibrary.svg)](https://jitpack.io/#aparmar2000/JPokeApiLibrary)
+[![Java 11](https://img.shields.io/badge/Java-11%2B-ED8B00?style=flat&logo=openjdk&logoColor=white)](https://openjdk.org/)
 [![License: LGPL-2.1](https://img.shields.io/github/license/aparmar2000/JPokeApiLibrary)](https://opensource.org/license/lgpl-2-1)
 # JPokeApiLibrary
 
