@@ -43,6 +43,14 @@ public class PokeApiLibrary {
 	@Getter
 	private final PokeDataCache dataCache;
 	
+	public PokeApiLibrary(File cacheFolder) {
+		this(cacheFolder, 4);
+	}
+	
+	public PokeApiLibrary(File cacheFolder, int concurrencyLevel) {
+		this(cacheFolder, concurrencyLevel, false);
+	}
+	
 	public PokeApiLibrary(File cacheFolder, int concurrencyLevel, boolean weak) {
 		client = buildHttpClient(Duration.ofSeconds(5));
 		gson = GsonProvider.buildGsonInstance(this);
