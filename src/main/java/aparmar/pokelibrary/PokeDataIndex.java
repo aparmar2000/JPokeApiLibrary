@@ -15,8 +15,10 @@ public class PokeDataIndex<T extends PkmnDataObject & IEnumerablePkmnData> {
 	private final Map<Integer, T> index;
 	
 	PokeDataIndex(PokeApiLibrary pokeApiLibrary, Class<T> dataClazz) {
-		this.index = pokeApiLibrary.getPaginatedResourceStream(dataClazz, true, PaginationCacheUsage.USE_CACHE)
-			.collect(ImmutableMap.toImmutableMap(IEnumerablePkmnData::getId, Function.identity()));
+		try (var stream = pokeApiLibrary.getPaginatedResourceStream(dataClazz, true, PaginationCacheUsage.USE_CACHE)) {
+			this.index = stream
+				.collect(ImmutableMap.toImmutableMap(IEnumerablePkmnData::getId, Function.identity()));
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

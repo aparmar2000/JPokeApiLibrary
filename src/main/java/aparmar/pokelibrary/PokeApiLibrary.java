@@ -4,14 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Spliterator;
-import java.util.Spliterators;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -108,7 +104,9 @@ public class PokeApiLibrary {
 		return dataCache.getResource(resource, disableCache);
 	}
 	
-	public <T extends PkmnDataObject & IPaginatedDataObject> Iterator<T> getPaginatedResourceIterator(Class<T> resourceClazz, int paginationSize, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
+	// ---
+	
+	public <T extends PkmnDataObject & IPaginatedDataObject> CloseableIterator<T> getPaginatedResourceIterator(Class<T> resourceClazz, int paginationSize, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
 		val apiPathAnnotation = resourceClazz.getAnnotation(ApiPath.class);
 		if (apiPathAnnotation == null) {
 			throw new NullPointerException(String.format("Class %s is missing required @ApiPath annotation!", resourceClazz));
@@ -117,22 +115,36 @@ public class PokeApiLibrary {
 		
 		return new PokeApiPaginationIterator<T>(this, gson, apiEndpoint, resourceClazz, paginationSize, useItemCache, paginationCacheUsage);
 	}
+	public <T extends PkmnDataObject & IPaginatedDataObject> CloseableIterator<T> getPaginatedResourceIterator(Class<T> resourceClazz, int paginationSize, int queueThreshold, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
+		val apiPathAnnotation = resourceClazz.getAnnotation(ApiPath.class);
+		if (apiPathAnnotation == null) {
+			throw new NullPointerException(String.format("Class %s is missing required @ApiPath annotation!", resourceClazz));
+		}
+		String apiEndpoint = apiPathAnnotation.value();
+		
+		return new PokeApiPaginationIterator<T>(this, gson, apiEndpoint, resourceClazz, paginationSize, useItemCache, paginationCacheUsage, queueThreshold);
+	}
 	public <T extends PkmnDataObject & IPaginatedDataObject> Stream<T> getPaginatedResourceStream(Class<T> resourceClazz, int paginationSize, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
-		return StreamSupport.stream(
-		          Spliterators.spliteratorUnknownSize(getPaginatedResourceIterator(resourceClazz, paginationSize, useItemCache, paginationCacheUsage), Spliterator.ORDERED),
-		          false);
+		return getPaginatedResourceIterator(resourceClazz, paginationSize, useItemCache, paginationCacheUsage).stream();
+	}
+	public <T extends PkmnDataObject & IPaginatedDataObject> Stream<T> getPaginatedResourceStream(Class<T> resourceClazz, int paginationSize, int queueThreshold, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
+		return getPaginatedResourceIterator(resourceClazz, paginationSize, queueThreshold, useItemCache, paginationCacheUsage).stream();
 	}
 	public <T extends PkmnDataObject & IPaginatedDataObject> List<T> getResourceList(Class<T> resourceClazz, int paginationSize, int limit, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
-		return getPaginatedResourceStream(resourceClazz, paginationSize, useItemCache, paginationCacheUsage)
-				.limit(limit)
-				.collect(Collectors.toCollection(ArrayList::new));
+		try (Stream<T> stream = getPaginatedResourceStream(resourceClazz, paginationSize, useItemCache, paginationCacheUsage)) {
+			return stream
+					.limit(limit)
+					.collect(Collectors.toCollection(ArrayList::new));
+		}
 	}
 	public <T extends PkmnDataObject & IPaginatedDataObject> List<T> getResourceList(Class<T> resourceClazz, int paginationSize, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
-		return getPaginatedResourceStream(resourceClazz, paginationSize, useItemCache, paginationCacheUsage)
-				.collect(Collectors.toCollection(ArrayList::new));
+		try (Stream<T> stream = getPaginatedResourceStream(resourceClazz, paginationSize, useItemCache, paginationCacheUsage)) {
+			return stream
+					.collect(Collectors.toCollection(ArrayList::new));
+		}
 	}
 	
-	public <T extends PkmnDataObject & IPaginatedDataObject> Iterator<T> getPaginatedResourceIterator(Class<T> resourceClazz, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
+	public <T extends PkmnDataObject & IPaginatedDataObject> CloseableIterator<T> getPaginatedResourceIterator(Class<T> resourceClazz, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {
 		return getPaginatedResourceIterator(resourceClazz, 10000, useItemCache, paginationCacheUsage);
 	}
 	public <T extends PkmnDataObject & IPaginatedDataObject> Stream<T> getPaginatedResourceStream(Class<T> resourceClazz, boolean useItemCache, PaginationCacheUsage paginationCacheUsage) {

@@ -44,8 +44,10 @@ public abstract class PkmnDataProvider<K extends PkmnDataProvider.INamedEnum, V 
 		this.keyClazz = keyClazz;
 		this.valueClazz = valueClazz;
 		
-		dataObjectMap = pokeApi.getPaginatedResourceStream(valueClazz, true, PaginationCacheUsage.USE_CACHE)
-			.collect(Collectors.toMap(this::getStringName, Function.identity(), (a,b)->a, HashMap::new));
+		try (var stream = pokeApi.getPaginatedResourceStream(valueClazz, true, PaginationCacheUsage.USE_CACHE)) {
+			dataObjectMap = stream
+				.collect(Collectors.toMap(this::getStringName, Function.identity(), (a,b)->a, HashMap::new));
+		}
 		
 		for (K presetEnum : keyClazz.getEnumConstants()) {
 			if (!dataObjectMap.containsKey(presetEnum.getName())) {
