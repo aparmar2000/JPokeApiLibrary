@@ -22,7 +22,7 @@ import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import aparmar.pokelibrary.objects.utility.PokeApiUrl;
 
-class PokeDataCacheTest {
+class IntegrationTestPokeDataCache {
 	private static final File TEST_CACHE = new File("target/test_cache_pokedatacache");
 	private PokeApiLibrary apiLibrary;
 	private PokeDataCache cache;

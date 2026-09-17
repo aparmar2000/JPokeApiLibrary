@@ -23,7 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import aparmar.pokelibrary.PokeApiLibrary;
 import aparmar.pokelibrary.objects.utility.PokeApiUrl;
 
-class PokeApiUrlTypeAdapterTest {
+class UnitTestPokeApiUrlTypeAdapter {
 	private PokeApiLibrary testLibrary;
 	private PokeApiUrlTypeAdapter adapter;
 

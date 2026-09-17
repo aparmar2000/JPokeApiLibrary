@@ -17,7 +17,7 @@ import com.google.gson.stream.JsonWriter;
 
 import aparmar.pokelibrary.PokeApiLibrary;
 
-class RootLibraryTypeAdapterTest {
+class UnitTestRootLibraryTypeAdapter {
 	private PokeApiLibrary testLibrary;
 	private RootLibraryTypeAdapter adapter;
 

@@ -21,7 +21,7 @@ import aparmar.pokelibrary.objects.pokemon.Pokemon;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.PokeApiUrl;
 
-class APIResourceTypeAdapterFactoryTest {
+class UnitTestAPIResourceTypeAdapterFactory {
 	private PokeApiLibrary testLibrary;
 	private APIResourceTypeAdapterFactory factory;
 	private Gson baseGson;

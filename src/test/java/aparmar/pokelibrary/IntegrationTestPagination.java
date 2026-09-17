@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import aparmar.pokelibrary.objects.pokemon.Pokemon;
 import lombok.val;
 
-class IntegrationPaginationTest {
+class IntegrationTestPagination {
 	private static final File TEST_CACHE = new File("test_cache");
 	private PokeApiLibrary apiLibrary;
 

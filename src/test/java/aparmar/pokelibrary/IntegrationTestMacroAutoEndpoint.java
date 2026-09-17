@@ -31,7 +31,7 @@ import lombok.val;
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 //@Disabled
-public class MacroAutoEndpointTest {
+public class IntegrationTestMacroAutoEndpoint {
 	private static final File TEST_CACHE = new File("test_cache");
 	private static final int HARD_DEPTH_LIMIT = 8;
 	private PokeApiLibrary apiLibrary;

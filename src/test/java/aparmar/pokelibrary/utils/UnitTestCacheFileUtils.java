@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.Gson;
 
-class CacheFileUtilsTest {
+class UnitTestCacheFileUtils {
 	private static final File TEST_DIR = new File("target/test_cache_file_utils");
 	private final Gson gson = new Gson();
 

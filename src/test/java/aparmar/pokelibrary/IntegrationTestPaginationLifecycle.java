@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Timeout;
 import aparmar.pokelibrary.objects.pokemon.Pokemon;
 
 @Timeout(value = 15, unit = TimeUnit.SECONDS)
-class PaginationLifecycleTest {
+class IntegrationTestPaginationLifecycle {
 	private static final File TEST_CACHE = new File("test_cache");
 	private PokeApiLibrary apiLibrary;
 

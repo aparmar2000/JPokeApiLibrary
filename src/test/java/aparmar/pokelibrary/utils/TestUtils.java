@@ -20,7 +20,7 @@ import com.google.common.collect.ListMultimap;
 import com.google.common.collect.MultimapBuilder;
 import com.google.common.reflect.ClassPath;
 
-import aparmar.pokelibrary.MacroAutoEndpointTest;
+import aparmar.pokelibrary.IntegrationTestMacroAutoEndpoint;
 import aparmar.pokelibrary.objects.ApiPath;
 import aparmar.pokelibrary.objects.IPaginatedDataObject;
 import aparmar.pokelibrary.objects.OptionalField;
@@ -204,7 +204,7 @@ public class TestUtils {
 	@SuppressWarnings("unchecked")
 	public static Set<Class<? extends IPaginatedDataObject>> findDirectlyPaginatableClasses() {
 		try {
-			ClassPath cp = ClassPath.from(MacroAutoEndpointTest.class.getClassLoader());
+			ClassPath cp = ClassPath.from(IntegrationTestMacroAutoEndpoint.class.getClassLoader());
 			return cp.getTopLevelClassesRecursive("aparmar.pokelibrary.objects").stream()
 					.map(ClassPath.ClassInfo::load)
 					.filter(IPaginatedDataObject.class::isAssignableFrom)
