@@ -1,8 +1,6 @@
 package aparmar.pokelibrary;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Path;
@@ -17,7 +15,6 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -33,6 +30,8 @@ import aparmar.pokelibrary.objects.PkmnNamedDataObject;
 import aparmar.pokelibrary.objects.utility.APIResource;
 import aparmar.pokelibrary.objects.utility.NamedAPIResource;
 import aparmar.pokelibrary.objects.utility.PokeApiUrl;
+import aparmar.pokelibrary.utils.CacheFileUtils;
+import aparmar.pokelibrary.utils.HelperConstants;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,8 +46,6 @@ import okhttp3.ResponseBody;
 @Log
 @Getter(value = AccessLevel.PACKAGE)
 public class PokeDataCache {
-	public static final String PAGINATION_CACHE_DIR_NAME = "pagination";
-
 	private final PokeApiLibrary apiLibrary;
 	@Getter
 	@NonNull
@@ -157,9 +154,12 @@ public class PokeDataCache {
 			boolean fileCacheAllowed = cacheFile != null && resource.allowFileCache();
 			
 			// Attempt to read from file cache
-			if (fileCacheAllowed && cacheFile != null && cacheFile.canRead()) {
-				try (FileReader in = new FileReader(cacheFile)) {
-					return PkmnDataObject.replicateWithNewSource(gson.fromJson(in, resource.getClazz()), LoadSource.FILE_CACHE, null);
+			if (fileCacheAllowed && cacheFile != null) {
+				try {
+					T cached = CacheFileUtils.readJson(cacheFile, gson, resource.getClazz());
+					if (cached != null) {
+						return PkmnDataObject.replicateWithNewSource(cached, LoadSource.FILE_CACHE, null);
+					}
 				} catch (JsonSyntaxException | JsonIOException | IOException e) {
 					PokeDataCache.log.warning(String.format("Failed to read cache file at '%s' - falling back to web.", cacheFile));
 					PokeDataCache.log.warning(e.getLocalizedMessage());
@@ -170,10 +170,9 @@ public class PokeDataCache {
 			T fetched = getResourceFromWeb(apiLibrary, gson, resource);
 			
 			// Update file cache
-			if (fileCacheAllowed) {
-				Files.createParentDirs(cacheFile);
-				try (FileWriter out = new FileWriter(cacheFile)) {
-					gson.toJson(fetched, out);
+			if (fileCacheAllowed && cacheFile != null) {
+				try {
+					CacheFileUtils.writeJson(cacheFile, gson, fetched);
 				} catch (JsonSyntaxException | JsonIOException | IOException e) {
 					PokeDataCache.log.severe(String.format("Failed to write cache file at '%s'.", cacheFile));
 					PokeDataCache.log.severe(e.getLocalizedMessage());
@@ -256,14 +255,14 @@ public class PokeDataCache {
 	File getPaginationCacheFile(Class<?> resourceClazz, int index) {
 		String endpointPath = getEndpointPath(resourceClazz);
 		return cacheFolder.toPath()
-				.resolve(Path.of(PAGINATION_CACHE_DIR_NAME, endpointPath, index + ".json"))
+				.resolve(Path.of(HelperConstants.PAGINATION_CACHE_DIR_NAME, endpointPath, index + ".json"))
 				.toFile();
 	}
 
 	File getPaginationCountCacheFile(Class<?> resourceClazz) {
 		String endpointPath = getEndpointPath(resourceClazz);
 		return cacheFolder.toPath()
-				.resolve(Path.of(PAGINATION_CACHE_DIR_NAME, endpointPath, "_count.json"))
+				.resolve(Path.of(HelperConstants.PAGINATION_CACHE_DIR_NAME, endpointPath, "_count.json"))
 				.toFile();
 	}
 
@@ -303,12 +302,12 @@ public class PokeDataCache {
 		}
 		
 		File cacheFile = getPaginationCacheFile(request.getResourceClazz(), request.getIndex());
-		if (cacheFile != null && cacheFile.canRead()) {
-			try (FileReader in = new FileReader(cacheFile)) {
+		if (cacheFile != null) {
+			try {
 				Type resourceType = PkmnNamedDataObject.class.isAssignableFrom(request.getResourceClazz())
 						? TypeToken.getParameterized(NamedAPIResource.class, request.getResourceClazz()).getType()
 						: TypeToken.getParameterized(APIResource.class, request.getResourceClazz()).getType();
-				APIResource<T> loaded = apiLibrary.getGson().fromJson(in, resourceType);
+				APIResource<T> loaded = CacheFileUtils.readJson(cacheFile, apiLibrary.getGson(), resourceType);
 				if (loaded != null) {
 					loaded.setClazz(request.getResourceClazz());
 					loaded.setLibInstance(apiLibrary);
@@ -338,10 +337,7 @@ public class PokeDataCache {
 			File cacheFile = getPaginationCacheFile(request.getResourceClazz(), request.getIndex());
 			if (cacheFile != null) {
 				try {
-					Files.createParentDirs(cacheFile);
-					try (FileWriter out = new FileWriter(cacheFile)) {
-						apiLibrary.getGson().toJson(result, out);
-					}
+					CacheFileUtils.writeJson(cacheFile, apiLibrary.getGson(), result);
 				} catch (JsonSyntaxException | JsonIOException | IOException e) {
 					PokeDataCache.log.severe(String.format("Failed to write pagination cache file at '%s'.", cacheFile));
 					PokeDataCache.log.severe(e.getLocalizedMessage());
@@ -365,9 +361,9 @@ public class PokeDataCache {
 			return null;
 		}
 		File countFile = getPaginationCountCacheFile(resourceClazz);
-		if (countFile != null && countFile.canRead()) {
-			try (FileReader in = new FileReader(countFile)) {
-				Integer loaded = apiLibrary.getGson().fromJson(in, Integer.class);
+		if (countFile != null) {
+			try {
+				Integer loaded = CacheFileUtils.readJson(countFile, apiLibrary.getGson(), Integer.class);
 				if (loaded != null) {
 					memCachePaginationCount.put(resourceClazz, loaded);
 					return loaded;
@@ -386,10 +382,7 @@ public class PokeDataCache {
 			File countFile = getPaginationCountCacheFile(resourceClazz);
 			if (countFile != null) {
 				try {
-					Files.createParentDirs(countFile);
-					try (FileWriter out = new FileWriter(countFile)) {
-						apiLibrary.getGson().toJson(count, out);
-					}
+					CacheFileUtils.writeJson(countFile, apiLibrary.getGson(), count);
 				} catch (JsonSyntaxException | JsonIOException | IOException e) {
 					PokeDataCache.log.severe(String.format("Failed to write pagination count file at '%s'.", countFile));
 					PokeDataCache.log.severe(e.getLocalizedMessage());
