@@ -72,7 +72,7 @@ public class IntegrationTestMacroAutoEndpoint {
 				if (resource == null) {
 					resource = composedGetter.get(loadedObject);
 				}
-				assertNotNull(resource, () -> "Resource must not be null for " + dataObjectClazz.getSimpleName() + " object: " + loadedObject + " in getter: " + composedGetter);
+				assertNotNull(resource, () -> "Resource must not be null for " + dataObjectClazz.getSimpleName() + " object:\n\t" + loadedObject + "\n\t\tGetter trace:\n\t"+composedGetter.traceString(loadedObject));
 				assertNotNull(resource.getUrl(), "Resource URL must not be null");
 
 				PkmnDataObject firstInstance = resource.get();

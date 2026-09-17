@@ -104,6 +104,27 @@ public class TestUtils {
 					next.returnType
 			);
 		}
+		
+		public String traceString(T inst) {
+			StringBuilder sb = new StringBuilder();
+			
+			boolean first = true;
+			Object result = inst;
+			for (FunctionWithMeta getterFunction : getterFunctions) {
+				result = getterFunction.apply(result);
+				if (!first) {
+					sb.append("\n\t");
+				}
+				sb.append(getterFunction.getName());
+				sb.append(": ");
+				sb.append(result == null ? "null" : "nonnull");
+				sb.append("  ");
+				sb.append(getterFunction.getWrapped());
+				first = false;
+			}
+			
+			return sb.toString();
+		}
 	}
 	
 	@Value
