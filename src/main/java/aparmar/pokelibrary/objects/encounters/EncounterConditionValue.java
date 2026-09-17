@@ -11,11 +11,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("encounter-condition-value")
+@ToString(callSuper = true)
 public class EncounterConditionValue extends PkmnNamedDataObject implements IPaginatedDataObject {
     private NamedAPIResource<EncounterCondition> condition;
     private List<PkmnName> names;

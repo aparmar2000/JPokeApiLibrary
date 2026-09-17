@@ -12,10 +12,12 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
+@ToString(callSuper = true)
 public class EvolutionTrigger extends PkmnNamedDataObject {
     private List<PkmnName> names;
     @SerializedName("pokemon_species")

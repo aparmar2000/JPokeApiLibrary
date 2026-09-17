@@ -11,11 +11,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("move-ailment")
+@ToString(callSuper = true)
 public class MoveAilment extends PkmnNamedDataObject implements IPaginatedDataObject {
     private List<NamedAPIResource<PkmnMove>> moves;
     private List<PkmnName> names;

@@ -13,11 +13,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("move-damage-class")
+@ToString(callSuper = true)
 public class MoveDamageClass extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     private List<PkmnDescription> descriptions;
     private List<NamedAPIResource<PkmnMove>> moves;

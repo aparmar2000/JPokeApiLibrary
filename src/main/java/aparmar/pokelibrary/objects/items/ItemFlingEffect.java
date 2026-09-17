@@ -13,11 +13,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("item-fling-effect")
+@ToString(callSuper = true)
 public class ItemFlingEffect extends PkmnNamedDataObject implements IPaginatedDataObject {
     @SerializedName("effect_entries")
     private List<Effect> effectEntries;

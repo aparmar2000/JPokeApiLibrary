@@ -19,11 +19,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("type")
+@ToString(callSuper = true)
 public class PkmnType extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     @SerializedName("damage_relations")
     private TypeRelations damageRelations;
@@ -34,8 +36,10 @@ public class PkmnType extends PkmnNamedDataObject implements IPaginatedDataObjec
     private List<GenerationGameIndex> gameIndices;
     private NamedAPIResource<PkmnGeneration> generation;
     @SerializedName("move_damage_class")
+    @OptionalField
     private NamedAPIResource<MoveDamageClass> moveDamageClass;
     private List<PkmnName> names;
     private List<TypePokemon> pokemon;
     private List<NamedAPIResource<PkmnMove>> moves;
+    //TODO: FIgure out the undocumented 'sprites' value returned by this endpoint
 }

@@ -13,11 +13,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("contest-effect")
+@ToString(callSuper = true)
 public class ContestEffect extends PkmnDataObject implements IPaginatedDataObject {
     private int appeal;
     private int jam;

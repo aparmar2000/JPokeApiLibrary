@@ -15,11 +15,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("ability")
+@ToString(callSuper = true)
 public class Ability extends PkmnNamedDataObject implements IPaginatedDataObject {
     @SerializedName("is_main_series")
     private boolean isMainSeries;

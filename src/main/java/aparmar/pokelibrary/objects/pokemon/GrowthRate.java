@@ -14,11 +14,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("growth-rate")
+@ToString(callSuper = true)
 public class GrowthRate extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     private String formula;
     private List<PkmnDescription> descriptions;

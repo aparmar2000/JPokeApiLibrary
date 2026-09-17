@@ -13,10 +13,12 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
+@ToString(callSuper = true)
 public class Pokedex extends PkmnNamedDataObject {
     @SerializedName("is_main_series")
     private boolean isMainSeries;

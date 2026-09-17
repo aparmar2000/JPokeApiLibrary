@@ -10,11 +10,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("encounter-method")
+@ToString(callSuper = true)
 public class EncounterMethod extends PkmnNamedDataObject implements IPaginatedDataObject {
     private int order;
     private List<PkmnName> names;

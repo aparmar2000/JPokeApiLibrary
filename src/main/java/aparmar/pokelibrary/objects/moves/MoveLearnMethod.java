@@ -16,11 +16,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("move-learn-method")
+@ToString(callSuper = true)
 public class MoveLearnMethod extends PkmnNamedDataObject implements IPaginatedDataObject {
     private List<PkmnDescription> descriptions;
     private List<PkmnName> names;

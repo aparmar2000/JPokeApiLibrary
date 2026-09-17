@@ -13,11 +13,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("characteristic")
+@ToString(callSuper = true)
 public class Characteristic extends PkmnDataObject implements IPaginatedDataObject {
     @SerializedName("gene_modulo")
     private int geneModulo;

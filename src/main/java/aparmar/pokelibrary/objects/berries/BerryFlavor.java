@@ -15,11 +15,13 @@ import lombok.Data;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Setter(value = AccessLevel.NONE)
 @ApiPath("berry-flavor")
+@ToString(callSuper = true)
 public class BerryFlavor extends PkmnNamedDataObject implements IPaginatedDataObject, IEnumerablePkmnData {
     private List<BerryFlavorMap> berries;
     @SerializedName("contest_type")
